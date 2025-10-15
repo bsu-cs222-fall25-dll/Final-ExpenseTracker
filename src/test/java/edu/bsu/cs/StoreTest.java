@@ -4,11 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class StoreTest {
+    Store store = new Store();
+
+    @Test
+    public void testAddTransaction() { store.addTransaction(0, "Spent on icecream"); }
 
     @Test
     public void testGetTransaction() {
-        Store store = new Store();
-        String transaction = store.getTransaction(0);
-        Assertions.assertEquals(transaction, "Amount: $0; Description: Spent on icecream;");
+        testAddTransaction();
+        Transaction transaction = store.getTransaction(0);
+        Assertions.assertEquals(0, transaction.getAmount());
+        Assertions.assertEquals("Spent on icecream", transaction.getDescription());
     }
 }
