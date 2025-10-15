@@ -1,8 +1,8 @@
 package edu.bsu.cs;
 
 public class Transaction {
-    int amount;
-    String description;
+    private int amount;
+    private String description;
 
     public Transaction(int amount, String description) {
         this.amount = amount;
