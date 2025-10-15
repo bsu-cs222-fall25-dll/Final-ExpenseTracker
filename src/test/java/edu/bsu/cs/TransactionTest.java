@@ -7,11 +7,15 @@ public class TransactionTest {
 
     @Test
     public void testGetAmount() {
-        Transaction transaction = new Transaction();
+        Transaction transaction = new Transaction(200, "Spent on ice cream");
         int amount = transaction.getAmount();
-        Assertions.assertEquals(0, amount);
+        Assertions.assertEquals(200, amount);
     }
 
     @Test
-    public void testGetDescription() {}
+    public void testGetDescription() {
+        Transaction transaction = new Transaction(200, "Spent on ice cream");
+        String description = transaction.getDescription();
+        Assertions.assertEquals("Spent on ice cream", description);
+    }
 }
