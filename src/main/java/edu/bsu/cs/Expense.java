@@ -1,7 +1,3 @@
 package edu.bsu.cs;
 
-public class Expense {
-    public int getTotalAmount() {
-        return 0;
-    }
-}
+public class Expense extends Store {}
