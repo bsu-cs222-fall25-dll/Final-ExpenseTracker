@@ -10,5 +10,9 @@ public class Store {
         transactions.add(transaction);
     }
 
+    public void removeTransaction(int index) { transactions.remove(index); }
+
     public Transaction getTransaction(int index) { return transactions.get(index); }
+
+    public ArrayList<Transaction> getAllTransactions() { return transactions; }
 }
