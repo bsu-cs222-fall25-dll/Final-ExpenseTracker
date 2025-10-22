@@ -2,21 +2,24 @@ package edu.bsu.cs;
 
 public class Main {
     public static void main(String[] args) {
-        Output output = new Output();
-        Input input = new Input();
-        Expense expense = new Expense();
-        Income income = new Income();
+        Store store = new Store();
+        Controller controller = new Controller(store);
 
-        output.showMenu();
+        while (true) {
+            int option = controller.mainMenu();
 
-        int choice = input.getChoice();
-        int amount;
-        String description;
-        if  (choice == 1) {
-            amount = input.getAmount();
-            description = input.getDescription();
-            expense.addTransaction(amount, description);
-        } else  if  (choice == 2) {
+            if  (option == 1) {
+                controller.expenseMenu();
+            } else if (option == 2) {
+                controller.incomeMenu();
+            } else if (option == 3) {
+                controller.removeTransaction();
+            } else if (option == 4) {
+                controller.getAllTransactions();
+            } else if (option == 5) {
+                break;
+            }
         }
+
     }
 }
