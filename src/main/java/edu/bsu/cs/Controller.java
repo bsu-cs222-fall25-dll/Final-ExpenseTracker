@@ -62,7 +62,7 @@ public class Controller {
     public void getSpecificTransactions(boolean type) {
         ArrayList<Transaction> typeTransaction = new ArrayList<>();
         for (Transaction transaction : store.getAllTransactions()) {
-            if (transaction.getType() == type) {
+            if (transaction.type() == type) {
                 typeTransaction.add(transaction);
             }
         }

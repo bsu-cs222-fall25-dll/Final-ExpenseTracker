@@ -47,13 +47,13 @@ public class Output {
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
             String type = "";
-            if (transaction.getType()) type = "Expense";
+            if (transaction.type()) type = "Expense";
             else type = "Income";
 
             System.out.println((i + 1) + ". Amount: $" +
-                    transaction.getAmount() +
+                    transaction.amount() +
                     " | Description: " +
-                    transaction.getDescription() +
+                    transaction.description() +
                     " | Type: " +
                     type);
         }

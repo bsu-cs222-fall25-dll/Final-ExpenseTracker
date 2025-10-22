@@ -13,7 +13,7 @@ public class StoreTest {
     public void testGetTransaction() {
         testAddTransaction();
         Transaction transaction = store.getTransaction(0);
-        Assertions.assertEquals(0, transaction.getAmount());
-        Assertions.assertEquals("Spent on ice cream", transaction.getDescription());
+        Assertions.assertEquals(0, transaction.amount());
+        Assertions.assertEquals("Spent on ice cream", transaction.description());
     }
 }
