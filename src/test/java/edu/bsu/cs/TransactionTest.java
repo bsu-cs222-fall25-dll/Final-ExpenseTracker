@@ -8,7 +8,7 @@ public class TransactionTest {
     @Test
     public void testGetAmount() {
         Transaction transaction = new Transaction(200, true, "Spent on ice cream");
-        int amount = transaction.getAmount();
+        float amount = transaction.getAmount();
         Assertions.assertEquals(200, amount);
     }
 
