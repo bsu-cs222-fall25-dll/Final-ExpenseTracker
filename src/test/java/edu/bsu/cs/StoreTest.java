@@ -7,13 +7,13 @@ public class StoreTest {
     Store store = new Store();
 
     @Test
-    public void testAddTransaction() { store.addTransaction(0, "Spent on icecream"); }
+    public void testAddTransaction() { store.addTransaction(0, true, "Spent on ice cream"); }
 
     @Test
     public void testGetTransaction() {
         testAddTransaction();
         Transaction transaction = store.getTransaction(0);
         Assertions.assertEquals(0, transaction.getAmount());
-        Assertions.assertEquals("Spent on icecream", transaction.getDescription());
+        Assertions.assertEquals("Spent on ice cream", transaction.getDescription());
     }
 }
