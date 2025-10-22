@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Store {
     private final ArrayList<Transaction> transactions = new ArrayList<>();
 
-    public void addTransaction(int amount, String description) {
-        Transaction transaction = new Transaction(amount, description);
+    public void addTransaction(int amount, boolean type, String description) {
+        Transaction transaction = new Transaction(amount, type, description);
         transactions.add(transaction);
     }
 
