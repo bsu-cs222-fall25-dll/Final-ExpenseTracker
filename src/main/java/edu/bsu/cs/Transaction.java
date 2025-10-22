@@ -1,18 +1,17 @@
 package edu.bsu.cs;
 
 public class Transaction {
-    private int amount;
+    private float amount;
     private String description;
-    // True = expense, False = income
-    private final boolean type;
+    private final boolean type; // True = expense, False = income
 
-    public Transaction(int amount, boolean type, String description) {
+    public Transaction(float amount, boolean type, String description) {
         this.amount = amount;
         this.type = type;
         this.description = description;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
@@ -20,7 +19,7 @@ public class Transaction {
         return type;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 
