@@ -4,15 +4,15 @@ import java.util.Scanner;
 
 public class Input {
     private final Scanner input = new Scanner(System.in);
-    public int getChoice() {
-        return input.nextInt();
+    public int getOption() {
+        return Integer.parseInt(input.nextLine());
     }
 
     public String getDescription() {
-        return input.next();
+        return input.nextLine();
     }
 
-    public int getAmount() {
-        return input.nextInt();
+    public float getAmount() {
+        return Float.parseFloat(input.nextLine());
     }
 }
