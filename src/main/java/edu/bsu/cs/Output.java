@@ -44,17 +44,11 @@ public class Output {
                 "2. View Income\n");
     }
 
-    public void showEnterAmount() {
-        System.out.print(ANSI_CYAN +"Enter amount: "+ ANSI_RESET);
-    }
+    public void showEnterAmount() { System.out.print(ANSI_CYAN +"Enter amount: "+ ANSI_RESET); }
 
-    public void showEnterDescription() {
-        System.out.print(ANSI_CYAN + "Enter description: " + ANSI_RESET);
-    }
+    public void showEnterDescription() { System.out.print(ANSI_CYAN + "Enter description: " + ANSI_RESET); }
 
-    public void showRemoveTransaction() {
-        System.out.print(ANSI_CYAN + "Enter Transaction ID to be removed: " + ANSI_RESET);
-    }
+    public void showRemoveTransaction() { System.out.print(ANSI_CYAN + "Enter Transaction ID to be removed: " + ANSI_RESET); }
 
     public void showTransactions(ArrayList<Transaction> transactions) {
         System.out.println(ANSI_GREEN + "---------------- Transaction List ----------------" + ANSI_RESET);
@@ -73,7 +67,5 @@ public class Output {
         }
     }
 
-    public void showEnterOption() {
-        System.out.print("Enter your option: ");
-    }
+    public void showEnterOption() { System.out.print("Enter your option: "); }
 }

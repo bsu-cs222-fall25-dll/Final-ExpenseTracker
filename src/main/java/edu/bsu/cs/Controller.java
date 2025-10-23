@@ -7,9 +7,7 @@ public class Controller {
     private final Input input = new Input();
     private final Store store;
 
-    public Controller(Store store) {
-        this.store = store;
-    }
+    public Controller(Store store) { this.store = store; }
 
     public int mainMenu() {
         output.showMenu();
@@ -22,11 +20,8 @@ public class Controller {
         output.showEnterOption();
         int option = input.getOption();
 
-        if (option == 1) {
-            addTransaction(true);
-        }   else if (option == 2) {
-            getSpecificTransactions(true);
-        }
+        if (option == 1) addTransaction(true);
+        else if (option == 2) getSpecificTransactions(true);
     }
 
     public void incomeMenu() {
@@ -34,11 +29,8 @@ public class Controller {
         output.showEnterOption();
         int option = input.getOption();
 
-        if (option == 1) {
-            addTransaction(false);
-        }   else if (option == 2) {
-            getSpecificTransactions(false);
-        }
+        if (option == 1) addTransaction(false);
+        else if (option == 2) getSpecificTransactions(false);
     }
 
     public void addTransaction(boolean type) {
@@ -55,16 +47,12 @@ public class Controller {
         store.removeTransaction(option - 1);
     }
 
-    public void getAllTransactions() {
-        output.showTransactions(store.getAllTransactions());
-    }
+    public void getAllTransactions() { output.showTransactions(store.getAllTransactions()); }
 
     public void getSpecificTransactions(boolean type) {
         ArrayList<Transaction> typeTransaction = new ArrayList<>();
         for (Transaction transaction : store.getAllTransactions()) {
-            if (transaction.type() == type) {
-                typeTransaction.add(transaction);
-            }
+            if (transaction.type() == type) typeTransaction.add(transaction);
         }
         output.showTransactions(typeTransaction);
     }
