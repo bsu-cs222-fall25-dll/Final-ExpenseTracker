@@ -18,4 +18,11 @@ public class TransactionTest {
         String description = transaction.description();
         Assertions.assertEquals("Spent on ice cream", description);
     }
+
+    @Test
+    public void testGetType() {
+        Transaction transaction = new Transaction(200, false, "Spent on ice cream");
+        boolean type = transaction.type();
+        Assertions.assertFalse(type);
+    }
 }
