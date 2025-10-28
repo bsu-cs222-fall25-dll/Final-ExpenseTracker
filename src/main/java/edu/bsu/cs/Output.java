@@ -9,7 +9,6 @@ public class Output {
     public static final String ANSI_BLUE = "\u001b[34;1m";
     public static final String ANSI_YELLOW = "\u001b[93;1m";
     public static final String ANSI_MAGENTA = "\u001b[35;1m";
-    public static final String ANSI_CYAN = "\u001B[4;96m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public void showMenu() {
