@@ -55,11 +55,18 @@ public class Output {
                 ||                   TRANSACTION LIST                        ||
                 ===============================================================""");
 
+        float expenses = 0;
+        float incomes = 0;
         for (int i = 0; i < transactions.size(); i++) {
             Transaction transaction = transactions.get(i);
             String type = "";
-            if (transaction.type()) type = "Expense";
-            else type = "Income";
+            if (transaction.type()) {
+                type = "Expense";
+                expenses += transaction.amount();
+            } else {
+                type = "Income";
+                incomes += transaction.amount();
+            }
 
             System.out.println(ANSI_WHITE + (i + 1) + ". Amount: $" +
                     transaction.amount() +
@@ -70,6 +77,12 @@ public class Output {
         }
 
         System.out.println(ANSI_YELLOW + "===============================================================" + ANSI_RESET);
+        System.out.println(ANSI_WHITE + "Expenses: $" +
+                expenses +
+                " | Incomes: $" +
+                incomes +
+                " | Total: $" +
+                (incomes - expenses) + ANSI_RESET);
     }
 
     public void showEnterAmount() { System.out.print(ANSI_MAGENTA + ">>> Enter amount: " + ANSI_RESET); }
