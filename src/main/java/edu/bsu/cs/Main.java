@@ -5,19 +5,26 @@ public class Main {
         Store store = new Store();
         Controller controller = new Controller(store);
 
-        while (true) {
+        boolean continueLoop = true;
+        while (continueLoop) {
             int option = controller.mainMenu();
 
-            if  (option == 1) {
-                controller.expenseMenu();
-            } else if (option == 2) {
-                controller.incomeMenu();
-            } else if (option == 3) {
-                controller.removeTransaction();
-            } else if (option == 4) {
-                controller.getAllTransactions();
-            } else if (option == 5) {
-                break;
+            switch (option) {
+                case 1:
+                    controller.expenseMenu();
+                    break;
+                case 2:
+                    controller.incomeMenu();
+                    break;
+                case 3:
+                    controller.removeTransaction();
+                    break;
+                case 4:
+                    controller.getAllTransactions();
+                    break;
+                case 5:
+                    continueLoop = false;
+                    break;
             }
         }
 
