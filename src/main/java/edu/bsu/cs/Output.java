@@ -13,6 +13,7 @@ public class Output {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public void showMenu() {
+        System.out.println("\n");
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
