@@ -13,7 +13,6 @@ public class Output {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public void showMenu() {
-        System.out.println("\n");
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
@@ -94,7 +93,7 @@ public class Output {
     public void showEnterOption() { System.out.print(ANSI_MAGENTA +">>> Enter option: " + ANSI_RESET); }
 
     public void showInvalidOptionError() {
-        System.out.println(ANSI_RED +"!!!!!!!! The value you entered is an invalid type for this option. TRY AGAIN !!!!!!!!" + ANSI_RESET);
+        System.out.println(ANSI_RED +"!!!!!!!! The value you entered is invalid for this option. TRY AGAIN !!!!!!!!" + ANSI_RESET);
         System.out.print(ANSI_MAGENTA +">>> " + ANSI_RESET);
     }
 }

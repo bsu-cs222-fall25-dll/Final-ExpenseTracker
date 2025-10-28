@@ -3,6 +3,7 @@ package edu.bsu.cs;
 public class Main {
     public static void main(String[] args) {
         Store store = new Store();
+        Output output = new Output();
         Controller controller = new Controller(store);
 
         boolean continueLoop = true;
@@ -24,6 +25,9 @@ public class Main {
                     break;
                 case 5:
                     continueLoop = false;
+                    break;
+                default:
+                    output.showInvalidOptionError();
                     break;
             }
         }
