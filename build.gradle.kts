@@ -23,7 +23,7 @@ tasks.test {
 }
 
 javafx {
-    version = "22"
+    version = "24"
     modules("javafx.controls", "javafx.fxml")
 }
 
