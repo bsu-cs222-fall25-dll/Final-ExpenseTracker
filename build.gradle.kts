@@ -23,12 +23,12 @@ tasks.test {
 }
 
 javafx {
-    version = "24"
+    version = "25"
     modules("javafx.controls", "javafx.fxml")
 }
 
 application {
-    mainClass.set("edu.bsu.cs.UI")
+    mainClass.set("edu.bsu.cs.Main")
 }
 
 tasks.named<JavaExec>("run") {
