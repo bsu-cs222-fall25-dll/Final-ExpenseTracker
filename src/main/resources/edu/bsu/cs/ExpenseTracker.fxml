@@ -37,6 +37,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+
 <VBox prefHeight="398.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.Controller">
 
     <children>
@@ -83,25 +84,25 @@
                     <left>
                         <VBox prefHeight="358.0" prefWidth="141.0" style="-fx-background-color: tan;" BorderPane.alignment="CENTER">
                             <children>
-                                <MFXButton fx:id="expenseButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE" onAction="#addExpense" prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Expense Menu" textAlignment="CENTER" textFill="#1e3f81">
+                                <MFXButton fx:id="expenseButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE" prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Expense Menu" textAlignment="CENTER" textFill="#1e3f81">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
                                 </MFXButton>
 
-                                <MFXButton fx:id="incomeButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE" onAction="#addIncome" prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Income Menu" textAlignment="CENTER" textFill="#0f2043">
+                                <MFXButton fx:id="incomeButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE"  prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Income Menu" textAlignment="CENTER" textFill="#0f2043">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
                                 </MFXButton>
 
-                                <MFXButton fx:id="removeButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE" onAction="#removeTransaction" prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Remove Transaction" textAlignment="CENTER" textFill="#0f2043" wrapText="true">
+                                <MFXButton fx:id="removeButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE"  prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Remove Transaction" textAlignment="CENTER" textFill="#0f2043" wrapText="true">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
                                 </MFXButton>
 
-                                <MFXButton fx:id="historyButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE" onAction="#showTransactionHistory" prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Transaction History" textAlignment="CENTER" textFill="#0f2043" wrapText="true">
+                                <MFXButton fx:id="historyButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE"  prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Transaction History" textAlignment="CENTER" textFill="#0f2043" wrapText="true">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
