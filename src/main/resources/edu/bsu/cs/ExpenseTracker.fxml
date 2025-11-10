@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="398.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs.Controller">
+
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Exit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="New" />
+                        <MenuItem mnemonicParsing="false" text="Open…" />
+                        <Menu mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As…" />
+                        <MenuItem mnemonicParsing="false" text="Revert" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Quit" />
+                    </items>
+                </Menu>
+
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Select All" />
+                        <MenuItem mnemonicParsing="false" text="Unselect All" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+
+        <AnchorPane prefHeight="379.0" prefWidth="640.0" style="-fx-background-color: #0f2043;">
+            <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+                <BorderPane layoutX="9.0" layoutY="7.0" prefHeight="353.0" prefWidth="623.0" style="-fx-background-color: #DFC29A;">
+                    <left>
+                        <VBox prefHeight="358.0" prefWidth="141.0" style="-fx-background-color: tan;" BorderPane.alignment="CENTER">
+                            <children>
+                                <MFXButton fx:id="expenseButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE" onAction="#addExpense" prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Expense Menu" textAlignment="CENTER" textFill="#1e3f81">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </MFXButton>
+
+                                <MFXButton fx:id="incomeButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE" onAction="#addIncome" prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Income Menu" textAlignment="CENTER" textFill="#0f2043">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </MFXButton>
+
+                                <MFXButton fx:id="removeButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE" onAction="#removeTransaction" prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Remove Transaction" textAlignment="CENTER" textFill="#0f2043" wrapText="true">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </MFXButton>
+
+                                <MFXButton fx:id="historyButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" depthTest="ENABLE" onAction="#showTransactionHistory" prefHeight="72.0" prefWidth="142.0" style="-fx-background-color: #DEC08E;" text="Transaction History" textAlignment="CENTER" textFill="#0f2043" wrapText="true">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </MFXButton>
+                            </children>
+                        </VBox>
+                    </left>
+               <top>
+                        <HBox prefHeight="66.0" prefWidth="444.0" style="-fx-background-color: #D1AD7B;" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField opacity="0.68" prefHeight="66.0" prefWidth="143.0" promptText="Expense Amount :" style="-fx-background-color: tan; -fx-font: black;" />
+                        <TextField opacity="0.68" prefHeight="66.0" prefWidth="421.0" promptText="Description" style="-fx-background-color: tan; -fx-text-fill: black;" />
+                        <Button blendMode="DARKEN" mnemonicParsing="false" prefHeight="66.0" prefWidth="61.0" style="-fx-background-color: tan;" text="Add Expense" textFill="#240653" wrapText="true" />
+                     </children>
+                        </HBox>
+               </top>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
