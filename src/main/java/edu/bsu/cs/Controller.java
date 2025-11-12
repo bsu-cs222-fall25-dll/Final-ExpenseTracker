@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 
 public class Controller {
 
-    private final Store store = new Store();
+    private final Store store = new Store("transactions.csv");
 
     @FXML
     private TextField expenseAmountField;

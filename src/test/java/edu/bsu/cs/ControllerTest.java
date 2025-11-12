@@ -9,7 +9,7 @@ public class ControllerTest {
     @FXML
     private ChoiceBox<String> transactionChoiceBox;
 
-    private final Store store = new Store();
+    private final Store store = new Store("./testStore.csv");
     private final Output output = new Output();
 
     @FXML
