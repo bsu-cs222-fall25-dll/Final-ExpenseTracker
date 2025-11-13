@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class StoreTest {
-    Store store = new Store("./testStore.csv");
+    Store store = new Store("./src/test/java/edu/bsu/cs/testStore.csv");
 
     @Test
     public void testAddTransaction() {
@@ -21,7 +21,6 @@ public class StoreTest {
 
     @Test
     public void testRemoveTransaction() {
-        testAddTransaction();
         store.removeTransaction(0);
     }
 }
