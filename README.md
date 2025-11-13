@@ -32,5 +32,5 @@ To quickly install Intellij, run:
 ---
 As of v2.0 the CLI option is removed. Run Main.java and you'll receive the new GUI dashboard.
 
-Options include:
-- 
+### Suppressed warnings
+There are 2 suppressed warning currently in `src/main/java/edu/bsu/cs/Controller` in the `addTransaction()` and `removeTransaction()` methods due to their arguments being unused. These arguments cant be removed due to JavaFX needing them.

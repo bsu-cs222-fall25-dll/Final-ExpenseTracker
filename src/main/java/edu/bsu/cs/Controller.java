@@ -27,6 +27,7 @@ public class Controller {
         loadTable();
     }
 
+    @SuppressWarnings("unused")
     @FXML
     private void addTransaction(ActionEvent actionEvent) {
         boolean transactionStatus = tableStore.addTransaction(typeComboBox, amountTextField, descriptionTextField);
@@ -34,6 +35,7 @@ public class Controller {
         else clearFields();
     }
 
+    @SuppressWarnings("unused")
     @FXML
     private void removeTransaction(ActionEvent actionEvent) {
         boolean transactionStatus = tableStore.removeTransaction(idTextField);
