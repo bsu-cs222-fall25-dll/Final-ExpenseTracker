@@ -24,24 +24,24 @@
                      <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="10.0">
                            <children>
-                              <MFXComboBox floatMode="BORDER" promptText="Type" style="-fx-background-color: tan;" />
-                              <MFXTextField floatMode="BORDER" prefWidth="110.0" promptText="Amount" style="-fx-background-color: tan;">
+                              <MFXComboBox fx:id="typeComboBox" floatMode="BORDER" promptText="Type" style="-fx-background-color: tan;" />
+                              <MFXTextField fx:id="amountTextField" floatMode="BORDER" prefWidth="110.0" promptText="Amount" style="-fx-background-color: tan;">
                                  <textFill>
                                     <Color />
                                  </textFill>
                               </MFXTextField>
-                              <MFXTextField floatMode="BORDER" prefWidth="210.0" promptText="Description" style="-fx-background-color: tan;" />
-                              <MFXButton buttonType="RAISED" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #0f2043;" text="Add" textFill="WHITE">
+                              <MFXTextField fx:id="descriptionTextField" floatMode="BORDER" prefWidth="210.0" promptText="Description" style="-fx-background-color: tan;" />
+                              <MFXButton buttonType="RAISED" onAction="#addTransaction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #0f2043;" text="Add" textFill="WHITE">
                                  <font>
-                                    <Font size="13.0" />
+                                    <Font name="System Bold" size="13.0" />
                                  </font>
                               </MFXButton>
                            </children>
                               </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="10.0">
                            <children>
-                              <MFXTextField floatMode="BORDER" prefWidth="120.0" promptText="Transaction ID" style="-fx-background-color: tan;" />
-                              <MFXButton buttonType="RAISED" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #8B4513;" text="Remove" textFill="WHITE">
+                              <MFXTextField fx:id="idTextField" floatMode="BORDER" prefWidth="120.0" promptText="Transaction ID" style="-fx-background-color: tan;" />
+                              <MFXButton buttonType="RAISED" onAction="#removeTransaction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #8B4513;" text="Remove" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -52,12 +52,12 @@
                   </VBox>
                </top>
                <center>
-                  <TableView prefHeight="385.0" prefWidth="682.0" style="-fx-background-color: #E8D5B7;" BorderPane.alignment="CENTER">
+                  <TableView fx:id="transactionTable" prefHeight="385.0" prefWidth="682.0" style="-fx-background-color: #E8D5B7;" BorderPane.alignment="CENTER">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="100.0" text="Type" />
-                      <TableColumn prefWidth="120.0" text="Amount" />
-                        <TableColumn prefWidth="385.0" text="Description" />
+                        <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="typeColumn" prefWidth="100.0" text="Type" />
+                      <TableColumn fx:id="amountColumn" prefWidth="120.0" text="Amount" />
+                        <TableColumn fx:id="descriptionColumn" prefWidth="385.0" text="Description" />
                     </columns>
                   </TableView>
                </center>
