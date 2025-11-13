@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// This is not testable because it is integrated with JavaFX ObservableList
 public class TransactionHandler {
 
     private final String FILE_NAME = "transactions.csv";
