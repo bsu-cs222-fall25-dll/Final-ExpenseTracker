@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Reader {
+public class FileHandler {
 
     private final String fileName;
 
-    public Reader(String fileName) { this.fileName = fileName; }
+    public FileHandler(String fileName) { this.fileName = fileName; }
 
     public ArrayList<Transaction> loadAllTransactions() {
         ArrayList<Transaction> transactions = new ArrayList<Transaction>();

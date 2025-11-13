@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 public class Store {
 
-    private final Reader reader;
+    private final FileHandler fileHandler;
 
-    public Store(String fileName) { this.reader = new Reader(fileName); }
+    public Store(String fileName) { this.fileHandler = new FileHandler(fileName); }
 
     public void addTransaction(Transaction transaction) {
-        ArrayList<Transaction> transactions = reader.loadAllTransactions();
+        ArrayList<Transaction> transactions = fileHandler.loadAllTransactions();
         transactions.add(transaction);
-        reader.saveAllTransactions(transactions);
+        fileHandler.saveAllTransactions(transactions);
     }
 
     public void removeTransaction(int index) {
-        ArrayList<Transaction> transactions = reader.loadAllTransactions();
+        ArrayList<Transaction> transactions = fileHandler.loadAllTransactions();
         transactions.remove(index);
-        reader.saveAllTransactions(transactions);
+        fileHandler.saveAllTransactions(transactions);
     }
 
-    public ArrayList<Transaction> getAllTransactions() { return reader.loadAllTransactions(); }
+    public ArrayList<Transaction> getAllTransactions() { return fileHandler.loadAllTransactions(); }
 }
