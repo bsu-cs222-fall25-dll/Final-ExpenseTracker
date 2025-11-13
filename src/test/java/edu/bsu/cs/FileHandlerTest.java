@@ -12,7 +12,7 @@ public class FileHandlerTest {
     @Test
     public void testSaveAllTransactions() throws IOException {
         ArrayList<Transaction> transactions = new ArrayList<>();
-        transactions.add(new Transaction(42.4F, true, "ice cream"));
+        transactions.add(new Transaction(42.4F, true, "Spent on ice cream"));
         fileHandler.saveAllTransactions(transactions);
 
         Assertions.assertEquals(fileHandler.loadAllTransactions(), transactions);
@@ -21,6 +21,18 @@ public class FileHandlerTest {
     @Test
     public void testLoadAllTransactions() {
         ArrayList<Transaction> transactions = fileHandler.loadAllTransactions();
-        Assertions.assertEquals("ice cream", transactions.get(0).description());
+        Assertions.assertEquals("Spent on ice cream", transactions.getFirst().description());
+    }
+
+    @Test
+    public void testFileNotFound() {
+        FileHandler testFileHandler = new FileHandler("testFileStore.csv");
+        Assertions.assertTrue(testFileHandler.loadAllTransactions().isEmpty());
+    }
+
+    @Test
+    public void testFileHeaderNotFound() {
+        FileHandler testFileHandler = new FileHandler("./src/test/java/edu/bsu/cs/testInvalidStore.csv");
+        Assertions.assertTrue(testFileHandler.loadAllTransactions().isEmpty());
     }
 }

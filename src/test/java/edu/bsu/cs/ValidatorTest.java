@@ -4,16 +4,47 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ValidatorTest {
+
+    @Test
+    public void testCheckAddFields() {
+        Validator validator = new Validator();
+        Assertions.assertTrue(validator.checkAddFields("300", "test", "Expense"));
+    }
+
+    @Test
+    public void testCheckInvalidAmountAddFields() {
+        Validator validator = new Validator();
+        Assertions.assertFalse(validator.checkAddFields("300", "", "Expense"));
+    }
+
+    @Test
+    public void testCheckInvalidTypeAddFields() {
+        Validator validator = new Validator();
+        Assertions.assertFalse(validator.checkAddFields("300", "test", ""));
+    }
+
+    @Test
+    public void testCheckInvalidDescriptionAddFields() {
+        Validator validator = new Validator();
+        Assertions.assertFalse(validator.checkAddFields("wrong", "test", "Expense"));
+    }
+
     @Test
     public void testCheckAmount() {
         Validator validator = new Validator();
-        Assertions.assertTrue(validator.checkAmount("65.56F"));
+        Assertions.assertTrue(validator.checkAmount("65.56"));
     }
 
     @Test
     public void testCheckNotAmount() {
         Validator validator = new Validator();
         Assertions.assertFalse(validator.checkAmount("test"));
+    }
+
+    @Test
+    public void testCheckNegativeAmount() {
+        Validator validator = new Validator();
+        Assertions.assertFalse(validator.checkAmount("-200"));
     }
 
     @Test
