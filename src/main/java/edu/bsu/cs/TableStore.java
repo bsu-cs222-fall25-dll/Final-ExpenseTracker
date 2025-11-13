@@ -1,7 +1,5 @@
 package edu.bsu.cs;
 
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -20,18 +18,18 @@ public class TableStore {
         return transactionList;
     }
 
-    public boolean addTransaction(MFXComboBox<String> typeComboBox, MFXTextField amountTextField, MFXTextField descriptionTextField) {
-        if (!validator.checkAddFields(amountTextField.getText(), descriptionTextField.getText(),typeComboBox.getText())) return false;
-        boolean transactionType = typeComboBox.getValue().equals("Expense");
-        Transaction transaction = new Transaction(Float.parseFloat(amountTextField.getText()), transactionType, descriptionTextField.getText());
+    public boolean addTransaction(String typeComboBox, String amountTextField, String descriptionTextField) {
+        if (!validator.checkAddFields(amountTextField, descriptionTextField,typeComboBox)) return false;
+        boolean transactionType = typeComboBox.equals("Expense");
+        Transaction transaction = new Transaction(Float.parseFloat(amountTextField), transactionType, descriptionTextField);
         store.addTransaction(transaction);
         transactionList.add(transaction);
         return true;
     }
 
-    public boolean removeTransaction(MFXTextField idTextField) {
-        if (!validator.checkId(idTextField.getText())) return false;
-        int index = Integer.parseInt(idTextField.getText());
+    public boolean removeTransaction(String idTextField) {
+        if (!validator.checkId(idTextField)) return false;
+        int index = Integer.parseInt(idTextField);
         transactionList.remove(index);
         store.removeTransaction(index);
         return true;

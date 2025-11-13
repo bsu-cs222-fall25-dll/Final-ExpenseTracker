@@ -30,7 +30,7 @@ public class Controller {
     @SuppressWarnings("unused")
     @FXML
     private void addTransaction(ActionEvent actionEvent) {
-        boolean transactionStatus = tableStore.addTransaction(typeComboBox, amountTextField, descriptionTextField);
+        boolean transactionStatus = tableStore.addTransaction(typeComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
         if (!transactionStatus) error.showInvalidTypeError();
         else clearFields();
     }
@@ -38,7 +38,7 @@ public class Controller {
     @SuppressWarnings("unused")
     @FXML
     private void removeTransaction(ActionEvent actionEvent) {
-        boolean transactionStatus = tableStore.removeTransaction(idTextField);
+        boolean transactionStatus = tableStore.removeTransaction(idTextField.getText());
         if (!transactionStatus) error.showInvalidTypeError();
         else clearFields();
     }
