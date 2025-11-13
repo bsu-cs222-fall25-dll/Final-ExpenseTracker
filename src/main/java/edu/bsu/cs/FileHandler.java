@@ -13,7 +13,7 @@ public class FileHandler {
     public FileHandler(String fileName) { this.fileName = fileName; }
 
     public ArrayList<Transaction> loadAllTransactions() {
-        ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+        ArrayList<Transaction> transactions = new ArrayList<>();
         File file = new File(fileName);
 
         try {
@@ -33,8 +33,7 @@ public class FileHandler {
         } catch (IOException e) { return transactions; }
     }
 
-    public void saveAllTransactions(ArrayList<Transaction> transactions) {
-        try {
+    public void saveAllTransactions(ArrayList<Transaction> transactions) throws IOException {
             FileWriter file = new FileWriter(fileName);
             String header = "amount,type,description\n";
             file.write(header);
@@ -45,8 +44,5 @@ public class FileHandler {
             }
 
             file.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
     }
 }

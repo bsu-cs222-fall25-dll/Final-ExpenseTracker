@@ -20,7 +20,7 @@ public class TableConfig {
     }
 
     private void configureIdColumn(TableColumn<Transaction, Integer> idColumn) {
-        idColumn.setCellFactory(column -> new TableCell<Transaction, Integer>() {
+        idColumn.setCellFactory(_ -> new TableCell<>() {
             @Override
             protected void updateItem(Integer item, boolean empty) {
                 super.updateItem(item, empty);

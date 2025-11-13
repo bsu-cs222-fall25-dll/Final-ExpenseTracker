@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
+
 public class Controller {
 
     private final TableStore tableStore = new TableStore();
@@ -21,26 +23,27 @@ public class Controller {
     @FXML private TableColumn<Transaction, Float> amountColumn;
     @FXML private TableColumn<Transaction, String> descriptionColumn;
 
-    @FXML
-    private void initialize() {
+    @FXML private void initialize() {
         loadComboBox();
         loadTable();
     }
 
     @SuppressWarnings("unused")
-    @FXML
-    private void addTransaction(ActionEvent actionEvent) {
-        boolean transactionStatus = tableStore.addTransaction(typeComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
-        if (!transactionStatus) error.showInvalidTypeError();
-        else clearFields();
+    @FXML private void addTransaction(ActionEvent actionEvent) {
+        try {
+            boolean transactionStatus = tableStore.addTransaction(typeComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
+            if (!transactionStatus) error.showInvalidTypeError();
+            else clearFields();
+        } catch (IOException exception) { error.showWriteFailedError(); }
     }
 
     @SuppressWarnings("unused")
-    @FXML
-    private void removeTransaction(ActionEvent actionEvent) {
-        boolean transactionStatus = tableStore.removeTransaction(idTextField.getText());
-        if (!transactionStatus) error.showInvalidTypeError();
-        else clearFields();
+    @FXML private void removeTransaction(ActionEvent actionEvent) {
+        try {
+            boolean transactionStatus = tableStore.removeTransaction(idTextField.getText());
+            if (!transactionStatus) error.showInvalidTypeError();
+            else clearFields();
+        } catch (IOException exception) { error.showWriteFailedError(); }
     }
 
     private void loadComboBox() {

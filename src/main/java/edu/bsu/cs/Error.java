@@ -29,4 +29,8 @@ public class Error {
                 - Description = String
                  - Transaction ID = Integer""");
     }
+
+    public void showWriteFailedError() {
+        showError("Failed to write to the CSV file. Does the file exist? Is the file structure correct?");
+    }
 }

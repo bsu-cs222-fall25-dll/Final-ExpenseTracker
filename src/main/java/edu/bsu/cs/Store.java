@@ -1,5 +1,6 @@
 package edu.bsu.cs;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Store {
@@ -8,13 +9,13 @@ public class Store {
 
     public Store(String fileName) { this.fileHandler = new FileHandler(fileName); }
 
-    public void addTransaction(Transaction transaction) {
+    public void addTransaction(Transaction transaction) throws IOException {
         ArrayList<Transaction> transactions = fileHandler.loadAllTransactions();
         transactions.add(transaction);
         fileHandler.saveAllTransactions(transactions);
     }
 
-    public void removeTransaction(int index) {
+    public void removeTransaction(int index) throws IOException {
         ArrayList<Transaction> transactions = fileHandler.loadAllTransactions();
         transactions.remove(index);
         fileHandler.saveAllTransactions(transactions);

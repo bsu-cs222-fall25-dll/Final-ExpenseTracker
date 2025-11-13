@@ -3,6 +3,7 @@ package edu.bsu.cs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TableStore {
@@ -18,7 +19,7 @@ public class TableStore {
         return transactionList;
     }
 
-    public boolean addTransaction(String typeComboBox, String amountTextField, String descriptionTextField) {
+    public boolean addTransaction(String typeComboBox, String amountTextField, String descriptionTextField) throws IOException {
         if (!validator.checkAddFields(amountTextField, descriptionTextField,typeComboBox)) return false;
         boolean transactionType = typeComboBox.equals("Expense");
         Transaction transaction = new Transaction(Float.parseFloat(amountTextField), transactionType, descriptionTextField);
@@ -27,7 +28,7 @@ public class TableStore {
         return true;
     }
 
-    public boolean removeTransaction(String idTextField) {
+    public boolean removeTransaction(String idTextField) throws IOException {
         if (!validator.checkId(idTextField)) return false;
         int index = Integer.parseInt(idTextField);
         transactionList.remove(index);
