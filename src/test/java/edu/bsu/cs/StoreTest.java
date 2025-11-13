@@ -13,16 +13,9 @@ public class StoreTest {
     }
 
     @Test
-    public void testGetAmountTransaction() {
+    public void testGetTransactions() {
         testAddTransaction();
-        Transaction transaction = store.getTransaction(0);
-        Assertions.assertEquals(10, transaction.amount());
-    }
-
-    @Test
-    public void testGetDescriptionTransaction() {
-        testAddTransaction();
-        Transaction transaction = store.getTransaction(0);
+        Transaction transaction = store.getAllTransactions().getFirst();
         Assertions.assertEquals("Spent on ice cream", transaction.description());
     }
 

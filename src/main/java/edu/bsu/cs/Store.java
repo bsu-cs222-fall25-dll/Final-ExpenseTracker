@@ -19,10 +19,5 @@ public class Store {
         reader.saveAllTransactions(transactions);
     }
 
-    public Transaction getTransaction(int index) {
-        ArrayList<Transaction> transactions = reader.loadAllTransactions();
-        return transactions.get(index);
-    }
-
     public ArrayList<Transaction> getAllTransactions() { return reader.loadAllTransactions(); }
 }
