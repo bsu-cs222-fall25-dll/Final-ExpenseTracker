@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class ReaderTest {
-    Reader reader = new Reader("./testStore.csv");
+    Reader reader = new Reader("./src/test/java/edu/bsu/cs/testStore.csv");
 
     @Test
     public void testSaveAllTransactions() {
