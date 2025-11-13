@@ -24,7 +24,7 @@ public class ErrorDialog {
                  \
                 - Type = Expense | Income
                  \
-                - Amount = Float
+                - Amount = Float > 0
                  \
                 - Description = String
                  - Transaction ID = Integer""");

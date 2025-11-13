@@ -10,8 +10,7 @@ public class Validator {
 
     public boolean checkAmount(String amountTextField) {
         try {
-            Float.parseFloat(amountTextField);
-            return true;
+            return Float.parseFloat(amountTextField) > 0;
         } catch (NumberFormatException e) {
             return false;
         }
