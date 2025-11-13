@@ -15,4 +15,17 @@ public class Error {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public void showInvalidTypeError() {
+        showError("""
+                You entered an invalid type!
+                The correct types are:
+                 \
+                - Type = Expense | Income
+                 \
+                - Amount = Float
+                 \
+                - Description = String
+                 - Transaction ID = Integer""");
+    }
 }
