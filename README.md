@@ -20,17 +20,8 @@ git https://github.com/bsu-cs222-fall25-dll/Final-ExpenseTracker.git
 ```
 
 ### Running this project
-- **Through the terminal**: You can then open this project within your editor and run the `Main.java` file which is within the `src/main/java/edu/bsu/cs` folder.
-
-This project aims to be a user-friendly, stable, and lightweight app for logging financial activity.
-
-### Assumptions:
-- User has Intellij and Gradle setup on their computer  
-To quickly install Intellij, run:  
-```winget install JetBrains.IntelliJIDEA.Community```
-- To install Gradle, 
----
-As of v2.0 the CLI option is removed. Run Main.java and you'll receive the new GUI dashboard.
+You can only run this application through Gradle. If you have IntelliJ you can run by clicking on gradle on your right sidebar and clicking on `Tasks > application > run`.
+Alternatively, you can use either the `gradlew` or `gradlew.bat` files at the root of the project depending on your machine.
 
 ### Suppressed warnings
 There are 2 suppressed warning currently in `src/main/java/edu/bsu/cs/Controller` in the `addTransaction()` and `removeTransaction()` methods due to their arguments being unused. These arguments cant be removed due to JavaFX needing them.
