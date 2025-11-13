@@ -7,7 +7,7 @@ import javafx.scene.control.TableColumn;
 
 public class TableConfig {
 
-    public void configureTable(
+    public void initialize(
             TableColumn<Transaction, Integer> idColumn,
             TableColumn<Transaction, String> typeColumn,
             TableColumn<Transaction, Float> amountColumn,

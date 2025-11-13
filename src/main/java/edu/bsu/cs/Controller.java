@@ -61,8 +61,8 @@ public class Controller {
     }
 
     private void loadTable() {
-        TableConfig table = new TableConfig();
-        table.configureTable(idColumn, typeColumn, amountColumn, descriptionColumn);
+        TableConfig tableConfig = new TableConfig();
+        tableConfig.initialize(idColumn, typeColumn, amountColumn, descriptionColumn);
         transactionTable.setItems(transactionHandler.initialize());
     }
 
