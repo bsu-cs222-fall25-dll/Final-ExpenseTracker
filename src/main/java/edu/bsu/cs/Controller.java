@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Controller {
 
     private final TableStore tableStore = new TableStore();
-    private final Error error = new Error();
+    private final ErrorDialog errorDialog = new ErrorDialog();
 
     @FXML private MFXComboBox<String> typeComboBox;
     @FXML private MFXTextField amountTextField;
@@ -35,24 +35,24 @@ public class Controller {
     @FXML private void addTransaction(ActionEvent actionEvent) {
         try {
             boolean transactionStatus = tableStore.addTransaction(typeComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
-            if (!transactionStatus) error.showInvalidTypeError();
+            if (!transactionStatus) errorDialog.showInvalidTypeError();
             else {
                 setTotalExpense();
                 clearFields();
             }
-        } catch (IOException exception) { error.showWriteFailedError(); }
+        } catch (IOException exception) { errorDialog.showWriteFailedError(); }
     }
 
     @SuppressWarnings("unused")
     @FXML private void removeTransaction(ActionEvent actionEvent) {
         try {
             boolean transactionStatus = tableStore.removeTransaction(idTextField.getText());
-            if (!transactionStatus) error.showInvalidTypeError();
+            if (!transactionStatus) errorDialog.showInvalidTypeError();
             else {
                 setTotalExpense();
                 clearFields();
             }
-        } catch (IOException exception) { error.showWriteFailedError(); }
+        } catch (IOException exception) { errorDialog.showWriteFailedError(); }
     }
 
     private void loadComboBox() {

@@ -2,17 +2,17 @@ package edu.bsu.cs;
 
 import javafx.scene.control.Alert;
 
-public class Error {
+public class ErrorDialog {
 
     Alert alert = new Alert(Alert.AlertType.ERROR);
 
-    private void configureDialog() {
+    private void configure() {
         alert.setTitle("An error occurred");
         alert.setHeaderText(null);
     }
 
     public void showError(String message) {
-        configureDialog();
+        configure();
         alert.setContentText(message);
         alert.showAndWait();
     }
