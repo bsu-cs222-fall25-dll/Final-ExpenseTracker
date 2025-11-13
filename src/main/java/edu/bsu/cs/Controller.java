@@ -2,6 +2,7 @@ package edu.bsu.cs;
 
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.mfxcore.controls.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -22,10 +23,12 @@ public class Controller {
     @FXML private TableColumn<Transaction, String> typeColumn;
     @FXML private TableColumn<Transaction, Float> amountColumn;
     @FXML private TableColumn<Transaction, String> descriptionColumn;
+    @FXML private Label totalExpense;
 
     @FXML private void initialize() {
         loadComboBox();
         loadTable();
+        setTotalExpense();
     }
 
     @SuppressWarnings("unused")
@@ -33,7 +36,10 @@ public class Controller {
         try {
             boolean transactionStatus = tableStore.addTransaction(typeComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
             if (!transactionStatus) error.showInvalidTypeError();
-            else clearFields();
+            else {
+                setTotalExpense();
+                clearFields();
+            }
         } catch (IOException exception) { error.showWriteFailedError(); }
     }
 
@@ -42,7 +48,10 @@ public class Controller {
         try {
             boolean transactionStatus = tableStore.removeTransaction(idTextField.getText());
             if (!transactionStatus) error.showInvalidTypeError();
-            else clearFields();
+            else {
+                setTotalExpense();
+                clearFields();
+            }
         } catch (IOException exception) { error.showWriteFailedError(); }
     }
 
@@ -56,6 +65,8 @@ public class Controller {
         table.configureTable(idColumn, typeColumn, amountColumn, descriptionColumn);
         transactionTable.setItems(tableStore.initialize());
     }
+
+    private void setTotalExpense() { totalExpense.setText(String.format("$%.2f", tableStore.getTotalExpense())); }
 
     private void clearFields() {
         amountTextField.clear();

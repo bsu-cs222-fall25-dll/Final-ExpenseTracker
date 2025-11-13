@@ -35,4 +35,14 @@ public class TableStore {
         store.removeTransaction(index);
         return true;
     }
+
+    public float getTotalExpense() {
+        float income = 0;
+        float expense = 0;
+        for (Transaction transaction : transactionList) {
+            if (transaction.type()) expense += transaction.amount();
+            else income += transaction.amount();
+        }
+        return income - expense;
+    }
 }

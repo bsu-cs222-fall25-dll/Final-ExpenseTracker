@@ -3,6 +3,8 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.mfxcore.controls.Label?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -61,6 +63,28 @@
                     </columns>
                   </TableView>
                </center>
+               <bottom>
+                  <HBox prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text=" Total Expenses:" textAlignment="CENTER">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalExpense" layoutX="10.0" layoutY="10.0" text="\$0.00" textAlignment="CENTER" textFill="#861919">
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </bottom>
                 </BorderPane>
             </children>
         </AnchorPane>
