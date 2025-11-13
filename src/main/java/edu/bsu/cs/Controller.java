@@ -1,115 +1,61 @@
 package edu.bsu.cs;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class Controller {
 
-    private final Store store = new Store("transactions.csv");
+    private final TableStore tableStore = new TableStore();
+    private final Error error = new Error();
+
+    @FXML private MFXComboBox<String> typeComboBox;
+    @FXML private MFXTextField amountTextField;
+    @FXML private MFXTextField descriptionTextField;
+    @FXML private MFXTextField idTextField;
+    @FXML private TableView<Transaction> transactionTable;
+    @FXML private TableColumn<Transaction, Integer> idColumn;
+    @FXML private TableColumn<Transaction, String> typeColumn;
+    @FXML private TableColumn<Transaction, Float> amountColumn;
+    @FXML private TableColumn<Transaction, String> descriptionColumn;
 
     @FXML
-    private TextField expenseAmountField;
-
-    @FXML
-    private TextField descriptionField;
-
-    @FXML
-    private MFXButton expenseButton;
-
-    @FXML
-    private MFXButton incomeButton;
-
-    @FXML
-    private MFXButton removeButton;
-
-    @FXML
-    private MFXButton historyButton;
-
-    @FXML
-    public void addExpense() {
-        try {
-            float amount = Float.parseFloat(expenseAmountField.getText());
-            String description = descriptionField.getText();
-            store.addTransaction(amount, true, description);
-            showAlert("Success", "Expense added: $" + amount + " - " + description);
-            clearFields();
-        } catch (NumberFormatException e) {
-            showAlert("Error", "Invalid amount! Please enter a valid number.");
-        }
+    public void initialize() {
+        loadComboBox();
+        loadTable();
     }
 
     @FXML
-    public void addIncome() {
-        try {
-            float amount = Float.parseFloat(expenseAmountField.getText());
-            String description = descriptionField.getText();
-            store.addTransaction(amount, false, description);
-            showAlert("Success", "Income added: $" + amount + " - " + description);
-            clearFields();
-        } catch (NumberFormatException e) {
-            showAlert("Error", "Invalid amount! Please enter a valid number.");
-        }
+    public void addTransaction(ActionEvent actionEvent) {
+        boolean transactionStatus = tableStore.addTransaction(typeComboBox, amountTextField, descriptionTextField);
+        if (!transactionStatus) error.showInvalidTypeError();
+        else clearFields();
     }
 
     @FXML
-    public void removeTransaction() {
-        if (store.getAllTransactions().isEmpty()) {
-            showAlert("Error", "No transactions to remove!");
-        } else {
-            Transaction last = store.getAllTransactions()
-                    .get(store.getAllTransactions().size() - 1);
-            store.removeTransaction(store.getAllTransactions().size() - 1);
-            showAlert("Removed", "Removed last transaction: $" +
-                    last.amount() + " - " + last.description());
-        }
+    public void removeTransaction(ActionEvent actionEvent) {
+        boolean transactionStatus = tableStore.removeTransaction(idTextField);
+        if (!transactionStatus) error.showInvalidTypeError();
+        else clearFields();
     }
 
-    @FXML
-    public void showTransactionHistory() {
-        if (store.getAllTransactions().isEmpty()) {
-            showAlert("Transaction History", "No transactions yet.");
-            return;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        float totalIncome = 0;
-        float totalExpense = 0;
-
-        for (int i = 0; i < store.getAllTransactions().size(); i++) {
-            Transaction t = store.getTransaction(i);
-            String type = t.type() ? "Expense" : "Income";
-            sb.append(i + 1)
-                    .append(". $")
-                    .append(t.amount())
-                    .append(" - ")
-                    .append(t.description())
-                    .append(" [")
-                    .append(type)
-                    .append("]\n");
-
-            if (t.type()) totalExpense += t.amount();
-            else totalIncome += t.amount();
-        }
-
-        sb.append("\nTotal Income: $").append(totalIncome)
-                .append("\nTotal Expense: $").append(totalExpense)
-                .append("\nBalance: $").append(totalIncome - totalExpense);
-
-        showAlert("Transaction History", sb.toString());
+    private void loadComboBox() {
+        typeComboBox.getItems().removeAll(typeComboBox.getItems());
+        typeComboBox.getItems().addAll("Expense", "Income");
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void loadTable() {
+        TableConfig table = new TableConfig();
+        table.configureTable(idColumn, typeColumn, amountColumn, descriptionColumn);
+        transactionTable.setItems(tableStore.initialize());
     }
 
     private void clearFields() {
-        expenseAmountField.clear();
-        descriptionField.clear();
+        amountTextField.clear();
+        descriptionTextField.clear();
+        idTextField.clear();
+        typeComboBox.clear();
     }
 }
