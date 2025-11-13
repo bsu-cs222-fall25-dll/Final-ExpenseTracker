@@ -22,20 +22,20 @@ public class Controller {
     @FXML private TableColumn<Transaction, String> descriptionColumn;
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         loadComboBox();
         loadTable();
     }
 
     @FXML
-    public void addTransaction(ActionEvent actionEvent) {
+    private void addTransaction(ActionEvent actionEvent) {
         boolean transactionStatus = tableStore.addTransaction(typeComboBox, amountTextField, descriptionTextField);
         if (!transactionStatus) error.showInvalidTypeError();
         else clearFields();
     }
 
     @FXML
-    public void removeTransaction(ActionEvent actionEvent) {
+    private void removeTransaction(ActionEvent actionEvent) {
         boolean transactionStatus = tableStore.removeTransaction(idTextField);
         if (!transactionStatus) error.showInvalidTypeError();
         else clearFields();
