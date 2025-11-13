@@ -7,9 +7,8 @@ public class Store {
 
     public Store(String fileName) { this.reader = new Reader(fileName); }
 
-    public void addTransaction(float amount, boolean type, String description) {
+    public void addTransaction(Transaction transaction) {
         ArrayList<Transaction> transactions = reader.loadAllTransactions();
-        Transaction transaction = new Transaction(amount, type, description);
         transactions.add(transaction);
         reader.saveAllTransactions(transactions);
     }

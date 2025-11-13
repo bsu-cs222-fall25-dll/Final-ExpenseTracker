@@ -7,10 +7,10 @@ public class StoreTest {
     Store store = new Store("./testStore.csv");
 
     @Test
-    public void testAddTransaction() { store.addTransaction(10, true, "Spent on ice cream"); }
-
-    @Test
-    public void testAddFloatTransaction() { store.addTransaction(4265.63F, true, "Spent on a shirt"); }
+    public void testAddTransaction() {
+        Transaction transaction = new Transaction(10.87F, true, "Spent on ice cream");
+        store.addTransaction(transaction);
+    }
 
     @Test
     public void testGetAmountTransaction() {
