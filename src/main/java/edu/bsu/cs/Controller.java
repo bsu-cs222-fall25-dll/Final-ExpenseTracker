@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Controller {
 
-    private final TableStore tableStore = new TableStore();
+    private final TransactionHandler transactionHandler = new TransactionHandler();
     private final ErrorDialog errorDialog = new ErrorDialog();
 
     @FXML private MFXComboBox<String> typeComboBox;
@@ -34,7 +34,7 @@ public class Controller {
     @SuppressWarnings("unused")
     @FXML private void addTransaction(ActionEvent actionEvent) {
         try {
-            boolean transactionStatus = tableStore.addTransaction(typeComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
+            boolean transactionStatus = transactionHandler.addTransaction(typeComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
             if (!transactionStatus) errorDialog.showInvalidTypeError();
             else {
                 setTotalExpense();
@@ -46,7 +46,7 @@ public class Controller {
     @SuppressWarnings("unused")
     @FXML private void removeTransaction(ActionEvent actionEvent) {
         try {
-            boolean transactionStatus = tableStore.removeTransaction(idTextField.getText());
+            boolean transactionStatus = transactionHandler.removeTransaction(idTextField.getText());
             if (!transactionStatus) errorDialog.showInvalidTypeError();
             else {
                 setTotalExpense();
@@ -63,10 +63,10 @@ public class Controller {
     private void loadTable() {
         TableConfig table = new TableConfig();
         table.configureTable(idColumn, typeColumn, amountColumn, descriptionColumn);
-        transactionTable.setItems(tableStore.initialize());
+        transactionTable.setItems(transactionHandler.initialize());
     }
 
-    private void setTotalExpense() { totalExpense.setText(String.format("$%.2f", tableStore.getTotalExpense())); }
+    private void setTotalExpense() { totalExpense.setText(String.format("$%.2f", transactionHandler.getTotalExpense())); }
 
     private void clearFields() {
         amountTextField.clear();

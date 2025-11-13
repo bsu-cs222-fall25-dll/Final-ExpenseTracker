@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TableStore {
+public class TransactionHandler {
 
     private final String FILE_NAME = "transactions.csv";
     private final Store store = new Store(FILE_NAME);
