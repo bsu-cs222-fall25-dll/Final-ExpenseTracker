@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Reader {
+
     private final String fileName;
 
     public Reader(String fileName) { this.fileName = fileName; }

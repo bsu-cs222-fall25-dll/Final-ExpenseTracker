@@ -3,6 +3,7 @@ package edu.bsu.cs;
 import javafx.scene.control.Alert;
 
 public class Error {
+
     Alert alert = new Alert(Alert.AlertType.ERROR);
 
     private void configureDialog() {

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 public class TableStore {
+
     private final String FILE_NAME = "transactions.csv";
     private final Store store = new Store(FILE_NAME);
     private final Validator validator = new Validator();

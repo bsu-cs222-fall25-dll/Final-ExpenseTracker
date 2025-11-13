@@ -3,6 +3,7 @@ package edu.bsu.cs;
 import java.util.ArrayList;
 
 public class Store {
+
     private final Reader reader;
 
     public Store(String fileName) { this.reader = new Reader(fileName); }
