@@ -1,6 +1,7 @@
 package edu.bsu.cs;
 
 import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -9,12 +10,12 @@ public class TableConfig {
 
     public void initialize(
             TableColumn<Transaction, Integer> idColumn,
-            TableColumn<Transaction, String> typeColumn,
+            TableColumn<Transaction, Category> categoryColumn,
             TableColumn<Transaction, Float> amountColumn,
             TableColumn<Transaction, String> descriptionColumn
     ) {
         configureIdColumn(idColumn);
-        configureTypeColumn(typeColumn);
+        configureCategoryColumn(categoryColumn);
         configureAmountColumn(amountColumn);
         configureDescriptionColumn(descriptionColumn);
     }
@@ -30,10 +31,10 @@ public class TableConfig {
         });
     }
 
-    private void configureTypeColumn(TableColumn<Transaction, String> typeColumn) {
-        typeColumn.setCellValueFactory(cellData -> {
-            Category category = cellData.getValue().type();
-            return new SimpleStringProperty(category.name());
+    private void configureCategoryColumn(TableColumn<Transaction, Category> categoryColumn) {
+        categoryColumn.setCellValueFactory(cellData -> {
+            Category category = cellData.getValue().category();
+            return new SimpleObjectProperty<Category>(category);
         });
     }
 

@@ -20,9 +20,9 @@ public class TransactionHandler {
         return transactionList;
     }
 
-    public boolean addTransaction(String typeComboBox, String amountTextField, String descriptionTextField) throws IOException {
-        if (!validator.checkAddFields(amountTextField, typeComboBox)) return false;
-        Transaction transaction = new Transaction(Float.parseFloat(amountTextField), Category.valueOf(typeComboBox), descriptionTextField);
+    public boolean addTransaction(Category categoryComboBox, String amountTextField, String descriptionTextField) throws IOException {
+        if (!validator.checkAddFields(amountTextField, categoryComboBox)) return false;
+        Transaction transaction = new Transaction(Float.parseFloat(amountTextField), categoryComboBox, descriptionTextField);
         store.addTransaction(transaction);
         transactionList.add(transaction);
         return true;
@@ -40,7 +40,7 @@ public class TransactionHandler {
         float income = 0;
         float expense = 0;
         for (Transaction transaction : transactionList) {
-            if (transaction.type() != Category.INCOME) expense += transaction.amount();
+            if (transaction.category() != Category.INCOME) expense += transaction.amount();
             else income += transaction.amount();
         }
         return income - expense;

@@ -8,20 +8,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class Controller {
 
     private final TransactionHandler transactionHandler = new TransactionHandler();
     private final ErrorDialog errorDialog = new ErrorDialog();
 
-    @FXML private MFXComboBox<String> typeComboBox;
+    @FXML private MFXComboBox<Category> categoryComboBox;
     @FXML private MFXTextField amountTextField;
     @FXML private MFXTextField descriptionTextField;
     @FXML private MFXTextField idTextField;
     @FXML private TableView<Transaction> transactionTable;
     @FXML private TableColumn<Transaction, Integer> idColumn;
-    @FXML private TableColumn<Transaction, String> typeColumn;
+    @FXML private TableColumn<Transaction, Category> categoryColumn;
     @FXML private TableColumn<Transaction, Float> amountColumn;
     @FXML private TableColumn<Transaction, String> descriptionColumn;
     @FXML private Label totalExpense;
@@ -35,7 +34,7 @@ public class Controller {
     @SuppressWarnings("unused")
     @FXML private void addTransaction(ActionEvent actionEvent) {
         try {
-            boolean transactionStatus = transactionHandler.addTransaction(typeComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
+            boolean transactionStatus = transactionHandler.addTransaction(categoryComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
             if (!transactionStatus) errorDialog.showInvalidTypeError();
             else {
                 setTotalExpense();
@@ -57,15 +56,13 @@ public class Controller {
     }
 
     private void loadComboBox() {
-        typeComboBox.getItems().removeAll(typeComboBox.getItems());
-        for (Category category : Category.values()) {
-            typeComboBox.getItems().add(category.name());
-        }
+        categoryComboBox.getItems().removeAll(categoryComboBox.getItems());
+        categoryComboBox.getItems().addAll(Category.values());
     }
 
     private void loadTable() {
         TableConfig tableConfig = new TableConfig();
-        tableConfig.initialize(idColumn, typeColumn, amountColumn, descriptionColumn);
+        tableConfig.initialize(idColumn, categoryColumn, amountColumn, descriptionColumn);
         transactionTable.setItems(transactionHandler.initialize());
     }
 
@@ -75,6 +72,6 @@ public class Controller {
         amountTextField.clear();
         descriptionTextField.clear();
         idTextField.clear();
-        typeComboBox.clear();
+        categoryComboBox.clear();
     }
 }

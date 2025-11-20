@@ -22,7 +22,7 @@ public class TransactionTest {
     @Test
     public void testGetType() {
         Transaction transaction = new Transaction(200, Category.FOOD, "Spent on ice cream");
-        Category type = transaction.type();
+        Category type = transaction.category();
         Assertions.assertEquals(Category.FOOD, type);
     }
 }

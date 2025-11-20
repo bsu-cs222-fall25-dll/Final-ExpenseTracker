@@ -35,11 +35,11 @@ public class FileHandler {
 
     public void saveAllTransactions(ArrayList<Transaction> transactions) throws IOException {
             FileWriter file = new FileWriter(fileName);
-            String header = "amount,type,description\n";
+            String header = "amount,category,description\n";
             file.write(header);
 
             for (Transaction transaction : transactions) {
-                String line = transaction.amount() + "," + transaction.type() + "," + transaction.description();
+                String line = transaction.amount() + "," + transaction.category() + "," + transaction.description();
                 file.write(line + "\n");
             }
 
