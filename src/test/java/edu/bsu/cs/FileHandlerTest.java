@@ -12,7 +12,7 @@ public class FileHandlerTest {
     @Test
     public void testSaveAllTransactions() throws IOException {
         ArrayList<Transaction> transactions = new ArrayList<>();
-        transactions.add(new Transaction(42.4F, true, "Spent on ice cream"));
+        transactions.add(new Transaction(42.4F, Category.FOOD, "Spent on ice cream"));
         fileHandler.saveAllTransactions(transactions);
 
         Assertions.assertEquals(fileHandler.loadAllTransactions(), transactions);

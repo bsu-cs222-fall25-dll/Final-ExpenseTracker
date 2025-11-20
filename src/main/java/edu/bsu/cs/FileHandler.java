@@ -24,7 +24,7 @@ public class FileHandler {
                 String[] fields = line.split(",");
                 Transaction transaction = new Transaction(
                         Float.parseFloat(fields[0]),
-                        Boolean.parseBoolean(fields[1]),
+                        Category.valueOf(fields[1]),
                         fields[2]);
                 transactions.add(transaction);
             }
