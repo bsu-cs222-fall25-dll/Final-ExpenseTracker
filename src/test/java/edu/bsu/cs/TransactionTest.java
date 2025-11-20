@@ -20,9 +20,9 @@ public class TransactionTest {
     }
 
     @Test
-    public void testGetType() {
+    public void testGetCategory() {
         Transaction transaction = new Transaction(200, Category.FOOD, "Spent on ice cream");
-        Category type = transaction.category();
-        Assertions.assertEquals(Category.FOOD, type);
+        Category category = transaction.category();
+        Assertions.assertEquals(Category.FOOD, category);
     }
 }

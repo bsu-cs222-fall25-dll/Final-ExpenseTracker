@@ -22,11 +22,10 @@ public class ErrorDialog {
                 You entered an invalid type!
                 The correct types are:
                  \
-                - Type = Expense | Income
+                - Category = GAS, INCOME, GROCERY, UTILITY, ENTERTAINMENT, FOOD, HEALTH, SHOPPING
                  \
                 - Amount = Float > 0
                  \
-                - Description = String
                  - Transaction ID = Integer""");
     }
 
