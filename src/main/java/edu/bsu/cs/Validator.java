@@ -2,9 +2,9 @@ package edu.bsu.cs;
 
 public class Validator {
 
-    public boolean checkAddFields(String amountTextField, String typeComboBox) {
+    public boolean checkAddFields(String amountTextField, Category categoryComboBox) {
         if (!checkAmount(amountTextField)) return false;
-        return checkType(typeComboBox);
+        return checkCategory(categoryComboBox);
     }
 
     public boolean checkAmount(String amountTextField) {
@@ -24,5 +24,5 @@ public class Validator {
         }
     }
 
-    public boolean checkType(String typeComboBox) { return !typeComboBox.isEmpty(); }
+    public boolean checkCategory(Category categoryComboBox) { return categoryComboBox != null; }
 }

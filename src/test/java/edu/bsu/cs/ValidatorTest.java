@@ -8,19 +8,19 @@ public class ValidatorTest {
     @Test
     public void testCheckAddFields() {
         Validator validator = new Validator();
-        Assertions.assertTrue(validator.checkAddFields("300", "Expense"));
+        Assertions.assertTrue(validator.checkAddFields("300", Category.GAS));
     }
 
     @Test
     public void testCheckInvalidAmountAddFields() {
         Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkAddFields("300", "Expense"));
+        Assertions.assertFalse(validator.checkAddFields("test", Category.GAS));
     }
 
     @Test
-    public void testCheckInvalidTypeAddFields() {
+    public void testCheckInvalidCategoryAddFields() {
         Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkAddFields("300", ""));
+        Assertions.assertFalse(validator.checkAddFields("300", null));
     }
 
     @Test
@@ -54,14 +54,14 @@ public class ValidatorTest {
     }
 
     @Test
-    public void testCheckType() {
+    public void testCheckCategory() {
         Validator validator = new Validator();
-        Assertions.assertTrue(validator.checkType("Expense"));
+        Assertions.assertTrue(validator.checkCategory(Category.FOOD));
     }
 
     @Test
-    public void testCheckNotType() {
+    public void testCheckNotCategory() {
         Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkType(""));
+        Assertions.assertFalse(validator.checkCategory(null));
     }
 }
