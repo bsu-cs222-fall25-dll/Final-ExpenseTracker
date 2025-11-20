@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Controller {
 
@@ -57,7 +58,7 @@ public class Controller {
 
     private void loadComboBox() {
         typeComboBox.getItems().removeAll(typeComboBox.getItems());
-        typeComboBox.getItems().addAll("Expense", "Income");
+        typeComboBox.getItems().addAll(Arrays.toString(Category.values()));
     }
 
     private void loadTable() {
