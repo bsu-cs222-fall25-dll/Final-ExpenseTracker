@@ -10,7 +10,7 @@ public class StoreTest {
 
     @Test
     public void testAddTransaction() throws IOException {
-        Transaction transaction = new Transaction(10.87F, true, "Spent on ice cream");
+        Transaction transaction = new Transaction(10.87F, Category.FOOD, "Spent on ice cream");
         store.addTransaction(transaction);
     }
 
