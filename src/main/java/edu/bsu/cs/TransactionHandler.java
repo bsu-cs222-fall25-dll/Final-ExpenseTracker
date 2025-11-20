@@ -22,7 +22,9 @@ public class TransactionHandler {
 
     public boolean addTransaction(Category categoryComboBox, String amountTextField, String descriptionTextField) throws IOException {
         if (!validator.checkAddFields(amountTextField, categoryComboBox)) return false;
-        Transaction transaction = new Transaction(Float.parseFloat(amountTextField), categoryComboBox, descriptionTextField);
+        String description = descriptionTextField;
+        if (descriptionTextField.isEmpty()) description = " ";
+        Transaction transaction = new Transaction(Float.parseFloat(amountTextField), categoryComboBox, description);
         store.addTransaction(transaction);
         transactionList.add(transaction);
         return true;
