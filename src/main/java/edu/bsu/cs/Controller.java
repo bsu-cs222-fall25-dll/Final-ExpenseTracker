@@ -58,7 +58,9 @@ public class Controller {
 
     private void loadComboBox() {
         typeComboBox.getItems().removeAll(typeComboBox.getItems());
-        typeComboBox.getItems().addAll(Arrays.toString(Category.values()));
+        for (Category category : Category.values()) {
+            typeComboBox.getItems().add(category.name());
+        }
     }
 
     private void loadTable() {
