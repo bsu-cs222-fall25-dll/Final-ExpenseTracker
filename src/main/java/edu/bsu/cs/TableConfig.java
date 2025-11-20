@@ -32,23 +32,22 @@ public class TableConfig {
 
     private void configureTypeColumn(TableColumn<Transaction, String> typeColumn) {
         typeColumn.setCellValueFactory(cellData -> {
-            boolean isExpense = cellData.getValue().type();
-            String typeStr = isExpense ? "Expense" : "Income";
-            return new SimpleStringProperty(typeStr);
+            Category category = cellData.getValue().type();
+            return new SimpleStringProperty(category.name());
         });
     }
 
     private void configureAmountColumn(TableColumn<Transaction, Float> amountColumn) {
         amountColumn.setCellValueFactory(cellData -> {
-            float amt = cellData.getValue().amount();
-            return new SimpleFloatProperty(amt).asObject();
+            float amount = cellData.getValue().amount();
+            return new SimpleFloatProperty(amount).asObject();
         });
     }
 
     private void configureDescriptionColumn(TableColumn<Transaction, String> descriptionColumn) {
         descriptionColumn.setCellValueFactory(cellData -> {
-            String desc = cellData.getValue().description();
-            return new SimpleStringProperty(desc);
+            String description = cellData.getValue().description();
+            return new SimpleStringProperty(description);
         });
     }
 }
