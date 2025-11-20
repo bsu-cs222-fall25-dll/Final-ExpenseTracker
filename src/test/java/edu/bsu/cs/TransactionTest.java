@@ -7,22 +7,22 @@ public class TransactionTest {
 
     @Test
     public void testGetAmount() {
-        Transaction transaction = new Transaction(200, true, "Spent on ice cream");
+        Transaction transaction = new Transaction(200, Category.FOOD, "Spent on ice cream");
         float amount = transaction.amount();
         Assertions.assertEquals(200, amount);
     }
 
     @Test
     public void testGetDescription() {
-        Transaction transaction = new Transaction(200, false, "Spent on ice cream");
+        Transaction transaction = new Transaction(200, Category.FOOD, "Spent on ice cream");
         String description = transaction.description();
         Assertions.assertEquals("Spent on ice cream", description);
     }
 
     @Test
     public void testGetType() {
-        Transaction transaction = new Transaction(200, false, "Spent on ice cream");
-        boolean type = transaction.type();
-        Assertions.assertFalse(type);
+        Transaction transaction = new Transaction(200, Category.FOOD, "Spent on ice cream");
+        Category type = transaction.type();
+        Assertions.assertEquals(Category.FOOD, type);
     }
 }
