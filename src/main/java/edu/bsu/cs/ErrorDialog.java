@@ -9,6 +9,8 @@ public class ErrorDialog {
     private void configure() {
         alert.setTitle("An error occurred");
         alert.setHeaderText(null);
+        alert.setWidth(580);
+        alert.setHeight(180);
     }
 
     public void showError(String message) {
@@ -25,7 +27,6 @@ public class ErrorDialog {
                 - Category = GAS, INCOME, GROCERY, UTILITY, ENTERTAINMENT, FOOD, HEALTH, SHOPPING
                  \
                 - Amount = Float > 0
-                 \
                  - Transaction ID = Integer""");
     }
 
