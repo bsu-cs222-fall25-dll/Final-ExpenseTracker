@@ -8,25 +8,19 @@ public class ValidatorTest {
     @Test
     public void testCheckAddFields() {
         Validator validator = new Validator();
-        Assertions.assertTrue(validator.checkAddFields("300", "test", "Expense"));
+        Assertions.assertTrue(validator.checkAddFields("300", "Expense"));
     }
 
     @Test
     public void testCheckInvalidAmountAddFields() {
         Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkAddFields("300", "", "Expense"));
+        Assertions.assertFalse(validator.checkAddFields("300", "Expense"));
     }
 
     @Test
     public void testCheckInvalidTypeAddFields() {
         Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkAddFields("300", "test", ""));
-    }
-
-    @Test
-    public void testCheckInvalidDescriptionAddFields() {
-        Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkAddFields("wrong", "test", "Expense"));
+        Assertions.assertFalse(validator.checkAddFields("300", ""));
     }
 
     @Test
@@ -57,18 +51,6 @@ public class ValidatorTest {
     public void testCheckNotId() {
         Validator validator = new Validator();
         Assertions.assertFalse(validator.checkId("test"));
-    }
-
-    @Test
-    public void testCheckDescription() {
-        Validator validator = new Validator();
-        Assertions.assertTrue(validator.checkDescription("ice cream"));
-    }
-
-    @Test
-    public void testCheckNotDescription() {
-        Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkId(""));
     }
 
     @Test

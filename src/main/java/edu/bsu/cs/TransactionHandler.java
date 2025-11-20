@@ -21,7 +21,7 @@ public class TransactionHandler {
     }
 
     public boolean addTransaction(String typeComboBox, String amountTextField, String descriptionTextField) throws IOException {
-        if (!validator.checkAddFields(amountTextField, descriptionTextField,typeComboBox)) return false;
+        if (!validator.checkAddFields(amountTextField, typeComboBox)) return false;
         Transaction transaction = new Transaction(Float.parseFloat(amountTextField), Category.valueOf(typeComboBox), descriptionTextField);
         store.addTransaction(transaction);
         transactionList.add(transaction);
