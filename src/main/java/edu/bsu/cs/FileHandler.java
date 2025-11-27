@@ -25,7 +25,8 @@ public class FileHandler {
                 Transaction transaction = new Transaction(
                         Float.parseFloat(fields[0]),
                         Category.valueOf(fields[1]),
-                        fields[2]);
+                        fields[2],
+                        fields[3]);
                 transactions.add(transaction);
             }
 
@@ -35,11 +36,11 @@ public class FileHandler {
 
     public void saveAllTransactions(ArrayList<Transaction> transactions) throws IOException {
             FileWriter file = new FileWriter(fileName);
-            String header = "amount,category,description\n";
+            String header = "amount,category,description, date\n";
             file.write(header);
 
             for (Transaction transaction : transactions) {
-                String line = transaction.amount() + "," + transaction.category() + "," + transaction.description();
+                String line = transaction.amount() + "," + transaction.category() + "," + transaction.description() + "," + transaction.date();
                 file.write(line + "\n");
             }
 

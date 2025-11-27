@@ -20,11 +20,14 @@ public class TransactionHandler {
         return transactionList;
     }
 
-    public boolean addTransaction(Category categoryComboBox, String amountTextField, String descriptionTextField) throws IOException {
+    public boolean addTransaction(Category categoryComboBox, String amountTextField, String descriptionTextField, String dateTextField) throws IOException {
         if (!validator.checkAddFields(amountTextField, categoryComboBox)) return false;
         String description = descriptionTextField;
+        String date = dateTextField;
         if (descriptionTextField.isEmpty()) description = " ";
-        Transaction transaction = new Transaction(Float.parseFloat(amountTextField), categoryComboBox, description);
+        if (dateTextField.isEmpty()) date = " ";
+
+        Transaction transaction = new Transaction(Float.parseFloat(amountTextField), categoryComboBox, description, date);
         store.addTransaction(transaction);
         transactionList.add(transaction);
         return true;

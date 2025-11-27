@@ -32,8 +32,9 @@
                                     <Color />
                                  </textFill>
                               </MFXTextField>
-                              <MFXTextField fx:id="descriptionTextField" floatMode="BORDER" prefWidth="210.0" promptText="Description" style="-fx-background-color: tan;" />
-                              <MFXButton buttonType="RAISED" onAction="#addTransaction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #0f2043;" text="Add" textFill="WHITE">
+                              <MFXTextField fx:id="descriptionTextField" floatMode="BORDER" prefHeight="38.0" prefWidth="107.0" promptText="Description" style="-fx-background-color: tan;" />
+                              <MFXTextField fx:id="dateTextField" floatMode="BORDER" prefHeight="38.0" prefWidth="107.0" promptText="Date ex.1/02/24" style="-fx-background-color: tan;" />
+                              <MFXButton buttonType="RAISED" onAction="#addTransaction" prefHeight="35.0" prefWidth="102.0" style="-fx-background-color: #0f2043;" text="Add" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -59,7 +60,9 @@
                         <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                       <TableColumn fx:id="categoryColumn" prefWidth="100.0" text="Category" />
                       <TableColumn fx:id="amountColumn" prefWidth="120.0" text="Amount" />
-                        <TableColumn fx:id="descriptionColumn" prefWidth="385.0" text="Description" />
+                        <TableColumn fx:id="descriptionColumn" prefWidth="239.0" text="Description" />
+                        <TableColumn fx:id="dateColumn" prefWidth="150.0" text="Date" />
+
                     </columns>
                   </TableView>
                </center>

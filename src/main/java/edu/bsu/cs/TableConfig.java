@@ -12,12 +12,15 @@ public class TableConfig {
             TableColumn<Transaction, Integer> idColumn,
             TableColumn<Transaction, Category> categoryColumn,
             TableColumn<Transaction, Float> amountColumn,
-            TableColumn<Transaction, String> descriptionColumn
+            TableColumn<Transaction, String> descriptionColumn,
+            TableColumn<Transaction, String> dateColumn
+
     ) {
         configureIdColumn(idColumn);
         configureCategoryColumn(categoryColumn);
         configureAmountColumn(amountColumn);
         configureDescriptionColumn(descriptionColumn);
+        configureDateColumn(dateColumn);
     }
 
     private void configureIdColumn(TableColumn<Transaction, Integer> idColumn) {
@@ -49,6 +52,12 @@ public class TableConfig {
         descriptionColumn.setCellValueFactory(cellData -> {
             String description = cellData.getValue().description();
             return new SimpleStringProperty(description);
+        });
+    }
+    private void configureDateColumn(TableColumn<Transaction, String> dateColumn) {
+        dateColumn.setCellValueFactory(cellData -> {
+            String date = cellData.getValue().date();
+            return new SimpleStringProperty(date);
         });
     }
 }

@@ -18,11 +18,13 @@ public class Controller {
     @FXML private MFXTextField amountTextField;
     @FXML private MFXTextField descriptionTextField;
     @FXML private MFXTextField idTextField;
+    @FXML private MFXTextField dateTextField;
     @FXML private TableView<Transaction> transactionTable;
     @FXML private TableColumn<Transaction, Integer> idColumn;
     @FXML private TableColumn<Transaction, Category> categoryColumn;
     @FXML private TableColumn<Transaction, Float> amountColumn;
     @FXML private TableColumn<Transaction, String> descriptionColumn;
+    @FXML private TableColumn<Transaction, String> dateColumn;
     @FXML private Label totalExpense;
 
     @FXML private void initialize() {
@@ -34,7 +36,7 @@ public class Controller {
     @SuppressWarnings("unused")
     @FXML private void addTransaction(ActionEvent actionEvent) {
         try {
-            boolean transactionStatus = transactionHandler.addTransaction(categoryComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText());
+            boolean transactionStatus = transactionHandler.addTransaction(categoryComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText(), dateTextField.getText());
             if (!transactionStatus) errorDialog.showInvalidTypeError();
             else {
                 setTotalExpense();
@@ -62,7 +64,7 @@ public class Controller {
 
     private void loadTable() {
         TableConfig tableConfig = new TableConfig();
-        tableConfig.initialize(idColumn, categoryColumn, amountColumn, descriptionColumn);
+        tableConfig.initialize(idColumn, categoryColumn, amountColumn, descriptionColumn, dateColumn);
         transactionTable.setItems(transactionHandler.initialize());
     }
 
@@ -73,5 +75,6 @@ public class Controller {
         descriptionTextField.clear();
         idTextField.clear();
         categoryComboBox.clear();
+        dateTextField.clear();
     }
 }
