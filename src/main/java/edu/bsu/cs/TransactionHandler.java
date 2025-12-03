@@ -1,6 +1,5 @@
 package edu.bsu.cs;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
@@ -14,9 +13,7 @@ public class TransactionHandler {
     private final Validator validator = new Validator();
     private final ObservableList<Transaction> transactionList;
 
-    TransactionHandler(ObservableList<Transaction> transactionList) {
-        this.transactionList = transactionList;
-    }
+    public TransactionHandler(ObservableList<Transaction> transactionList) { this.transactionList = transactionList; }
 
     public ObservableList<Transaction> initialize() {
         ArrayList<Transaction> transactions = store.getAllTransactions();
