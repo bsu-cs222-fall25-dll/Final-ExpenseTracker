@@ -25,3 +25,6 @@ Alternatively, you can use either the `gradlew` or `gradlew.bat` files at the ro
 
 ### Suppressed warnings
 There are 3 suppressed warning currently in `src/main/java/edu/bsu/cs/Controller` in the `addTransaction()`, `removeTransaction()` and `openChartDialog()` methods due to their arguments being unused. These arguments cant be removed due to JavaFX needing them.
+
+### Additional Information
+Compared to the previous iteration the way you delete transactions is different. You click on the transaction and then delete instead of typing out the transaction id.
