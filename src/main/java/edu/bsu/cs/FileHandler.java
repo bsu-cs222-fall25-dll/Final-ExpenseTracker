@@ -36,7 +36,7 @@ public class FileHandler {
 
     public void saveAllTransactions(ArrayList<Transaction> transactions) throws IOException {
             FileWriter file = new FileWriter(fileName);
-            String header = "amount,category,description, date\n";
+            String header = "amount,category,description,date\n";
             file.write(header);
 
             for (Transaction transaction : transactions) {

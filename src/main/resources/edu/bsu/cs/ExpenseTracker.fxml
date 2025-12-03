@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.mfxcore.controls.Label?>
@@ -76,7 +77,11 @@
                   </HBox>
                </bottom>
                <center>
-                  <MFXTableView fx:id="transactionTable" BorderPane.alignment="CENTER" />
+                  <MFXScrollPane BorderPane.alignment="CENTER">
+                     <content>
+                        <MFXTableView fx:id="transactionTable" minHeight="300.0" minWidth="682.0" />
+                     </content>
+                  </MFXScrollPane>
                </center>
                 </BorderPane>
             </children>
