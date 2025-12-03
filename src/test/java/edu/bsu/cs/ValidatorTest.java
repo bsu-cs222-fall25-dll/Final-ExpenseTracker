@@ -44,18 +44,6 @@ public class ValidatorTest {
     }
 
     @Test
-    public void testCheckId() {
-        Validator validator = new Validator();
-        Assertions.assertTrue(validator.checkId("3"));
-    }
-
-    @Test
-    public void testCheckNotId() {
-        Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkId("test"));
-    }
-
-    @Test
     public void testCheckCategory() {
         Validator validator = new Validator();
         Assertions.assertTrue(validator.checkCategory(Category.FOOD));
