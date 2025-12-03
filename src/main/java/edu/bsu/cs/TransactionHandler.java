@@ -34,12 +34,9 @@ public class TransactionHandler {
         return true;
     }
 
-    public boolean removeTransaction(String idTextField) throws IOException {
-        if (!validator.checkId(idTextField)) return false;
-        int index = Integer.parseInt(idTextField) - 1;
+    public void removeTransaction(int index) throws IOException {
         transactionList.remove(index);
         store.removeTransaction(index);
-        return true;
     }
 
     public float getTotalExpense() {

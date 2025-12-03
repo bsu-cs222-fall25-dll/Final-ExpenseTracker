@@ -1,5 +1,6 @@
 package edu.bsu.cs;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
@@ -25,13 +26,15 @@ public class TableConfig {
         this.transactionList = transactionList;
     }
 
-    public void initialize() {
+    public void initialize(MFXButton deleteButton) {
         setupTableColumns();
         addTableFilters();
+        addDeleteBindListener(deleteButton);
 
         table.setItems(null);
         table.setItems(transactionList);
         table.features().enableBounceEffect();
+
     }
 
     private void setupTableColumns() {
@@ -40,6 +43,12 @@ public class TableConfig {
         configureCategoryColumn();
         configureAmountColumn();
         configureDescriptionColumn();
+    }
+
+    private void addDeleteBindListener(MFXButton deleteButton) {
+        table.getSelectionModel().selectionProperty().addListener((observable, oldValue, newValue) -> {
+            deleteButton.setDisable(newValue.isEmpty());
+        });
     }
 
     private void configureIdColumn() {

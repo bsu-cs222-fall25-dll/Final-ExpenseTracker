@@ -1,5 +1,6 @@
 package edu.bsu.cs;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -21,8 +22,8 @@ public class Controller {
     @FXML private MFXComboBox<Category> categoryComboBox;
     @FXML private MFXTextField amountTextField;
     @FXML private MFXTextField descriptionTextField;
-    @FXML private MFXTextField idTextField;
     @FXML private MFXTextField dateTextField;
+    @FXML private MFXButton deleteButton;
     @FXML private MFXTableView<Transaction> transactionTable;
     @FXML private Label totalExpense;
 
@@ -47,11 +48,12 @@ public class Controller {
     @SuppressWarnings("unused")
     @FXML private void removeTransaction(ActionEvent actionEvent) {
         try {
-            boolean transactionStatus = transactionHandler.removeTransaction(idTextField.getText());
-            if (!transactionStatus) errorDialog.showInvalidTypeError();
-            else {
+            Transaction selectedTransaction = transactionTable.getSelectionModel().getSelectedValue();
+            if (selectedTransaction != null) {
+                ObservableList<Transaction> tableItems = transactionTable.getItems();
+                int selectedItemIndex = tableItems.indexOf(selectedTransaction);
+                transactionHandler.removeTransaction(selectedItemIndex);
                 setTotalExpense();
-                clearFields();
             }
         } catch (IOException exception) { errorDialog.showWriteFailedError(); }
     }
@@ -69,7 +71,7 @@ public class Controller {
     private void loadTable() {
         transactionTable.setItems(transactionHandler.initialize());
         TableConfig tableConfig = new TableConfig(transactionTable, transactionList);
-        tableConfig.initialize();
+        tableConfig.initialize(deleteButton);
     }
 
     private void setTotalExpense() { totalExpense.setText(String.format("$%.2f", transactionHandler.getTotalExpense())); }
@@ -77,7 +79,6 @@ public class Controller {
     private void clearFields() {
         amountTextField.clear();
         descriptionTextField.clear();
-        idTextField.clear();
         categoryComboBox.clear();
         dateTextField.clear();
     }

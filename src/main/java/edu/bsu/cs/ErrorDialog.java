@@ -26,8 +26,7 @@ public class ErrorDialog {
                  \
                 - Category = GAS, INCOME, GROCERY, UTILITY, ENTERTAINMENT, FOOD, HEALTH, SHOPPING
                  \
-                - Amount = Float > 0
-                 - Transaction ID = Integer""");
+                - Amount = Float > 0""");
     }
 
     public void showWriteFailedError() {
