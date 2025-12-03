@@ -6,7 +6,7 @@ Contributors:
 - Tyler Shannon
 
 ## Project Summary
-This project allows a user to track their expenses. Users will be able to enter their expenses, income, goals with the amount and description and view a table of all of their transactions
+This project allows a user to track their expenses. Users will be able to enter their expense/income broken down by category, amount, date and description and view a table or a pie chart with their transaction.
 
 ## Building this project
 ### Prerequisites
