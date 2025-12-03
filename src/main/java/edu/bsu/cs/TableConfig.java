@@ -11,32 +11,69 @@ import java.util.Comparator;
 
 public class TableConfig {
 
-    public void initialize(MFXTableView<Transaction> table, ObservableList<Transaction> transactionList) {
-        setupTable(table, transactionList);
+    private final MFXTableView<Transaction> table;
+    private final ObservableList<Transaction> transactionList;
 
-        table.autosizeColumnsOnInitialization();
+    MFXTableColumn<Transaction> idColumn;
+    MFXTableColumn<Transaction> dateColumn;
+    MFXTableColumn<Transaction> categoryColumn;
+    MFXTableColumn<Transaction> amountColumn;
+    MFXTableColumn<Transaction> descriptionColumn;
+
+    public TableConfig(MFXTableView<Transaction> table, ObservableList<Transaction> transactionList) {
+        this.table = table;
+        this.transactionList = transactionList;
     }
 
-    private void setupTable(MFXTableView<Transaction> table, ObservableList<Transaction> transactionList) {
-        MFXTableColumn<Transaction> idColumn = new MFXTableColumn<>("Id", true);
-        MFXTableColumn<Transaction> categoryColumn = new MFXTableColumn<>("Category", true, Comparator.comparing(Transaction::category));
-        MFXTableColumn<Transaction> amountColumn = new MFXTableColumn<>("Amount", true, Comparator.comparing(Transaction::amount));
-        MFXTableColumn<Transaction> descriptionColumn = new MFXTableColumn<>("Description", true, Comparator.comparing(Transaction::description));
-        MFXTableColumn<Transaction> dateColumn = new MFXTableColumn<>("Date", true, Comparator.comparing(Transaction::date));
-
-        idColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(cell -> table.getItems().indexOf(cell) + 1));
-        categoryColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::category));
-        amountColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::amount));
-        descriptionColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::description));
-        dateColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::date));
-
-        table.getTableColumns().addAll(idColumn, categoryColumn, amountColumn, descriptionColumn, dateColumn);
-        table.getFilters().addAll(
-                new EnumFilter<>("Category", Transaction::category, Category.class),
-                new FloatFilter<>("Amount", Transaction::amount)
-        );
+    public void initialize() {
+        setupTableColumns();
+        addTableFilters();
 
         table.setItems(null);
         table.setItems(transactionList);
+        table.features().enableBounceEffect();
+    }
+
+    private void setupTableColumns() {
+        configureIdColumn();
+        configureDateColumn();
+        configureCategoryColumn();
+        configureAmountColumn();
+        configureDescriptionColumn();
+    }
+
+    private void configureIdColumn() {
+        idColumn = new MFXTableColumn<>("ID", true, Comparator.comparingInt(transactionList::indexOf));
+        idColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(cell -> table.getItems().indexOf(cell) + 1));
+        table.getTableColumns().add(idColumn);
+    }
+
+    private void configureDateColumn() {
+        dateColumn = new MFXTableColumn<>("Date", true, Comparator.comparing(Transaction::date));
+        dateColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(Transaction::date));
+        table.getTableColumns().add(dateColumn);
+    }
+
+    private void configureCategoryColumn() {
+        categoryColumn = new MFXTableColumn<>("Category", true, Comparator.comparing(Transaction::category));
+        categoryColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(Transaction::category));
+        table.getTableColumns().add(categoryColumn);
+    }
+
+    private void configureAmountColumn() {
+        amountColumn = new MFXTableColumn<>("Amount", true, Comparator.comparing(Transaction::amount));
+        amountColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(Transaction::amount));
+        table.getTableColumns().add(amountColumn);
+    }
+
+    private void configureDescriptionColumn() {
+        descriptionColumn = new MFXTableColumn<>("Description", true, Comparator.comparing(Transaction::description));
+        descriptionColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(Transaction::description));
+        table.getTableColumns().add(descriptionColumn);
+    }
+
+    private void addTableFilters() {
+        table.getFilters().add(new EnumFilter<>("Category", Transaction::category, Category.class));
+        table.getFilters().add(new FloatFilter<>("Amount", Transaction::amount));
     }
 }

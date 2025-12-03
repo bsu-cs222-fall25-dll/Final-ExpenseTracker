@@ -63,8 +63,8 @@ public class Controller {
 
     private void loadTable() {
         transactionTable.setItems(transactionHandler.initialize());
-        TableConfig tableConfig = new TableConfig();
-        tableConfig.initialize(transactionTable, transactionList);
+        TableConfig tableConfig = new TableConfig(transactionTable, transactionList);
+        tableConfig.initialize();
     }
 
     private void setTotalExpense() { totalExpense.setText(String.format("$%.2f", transactionHandler.getTotalExpense())); }
