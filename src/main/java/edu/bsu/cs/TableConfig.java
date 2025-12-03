@@ -1,63 +1,79 @@
 package edu.bsu.cs;
 
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
+import io.github.palexdev.materialfx.controls.MFXTableColumn;
+import io.github.palexdev.materialfx.controls.MFXTableView;
+import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.filter.EnumFilter;
+import io.github.palexdev.materialfx.filter.FloatFilter;
+import javafx.collections.ObservableList;
+
+import java.util.Comparator;
 
 public class TableConfig {
 
-    public void initialize(
-            TableColumn<Transaction, Integer> idColumn,
-            TableColumn<Transaction, Category> categoryColumn,
-            TableColumn<Transaction, Float> amountColumn,
-            TableColumn<Transaction, String> descriptionColumn,
-            TableColumn<Transaction, String> dateColumn
+    private final MFXTableView<Transaction> table;
+    private final ObservableList<Transaction> transactionList;
 
-    ) {
-        configureIdColumn(idColumn);
-        configureCategoryColumn(categoryColumn);
-        configureAmountColumn(amountColumn);
-        configureDescriptionColumn(descriptionColumn);
-        configureDateColumn(dateColumn);
+    MFXTableColumn<Transaction> idColumn;
+    MFXTableColumn<Transaction> dateColumn;
+    MFXTableColumn<Transaction> categoryColumn;
+    MFXTableColumn<Transaction> amountColumn;
+    MFXTableColumn<Transaction> descriptionColumn;
+
+    public TableConfig(MFXTableView<Transaction> table, ObservableList<Transaction> transactionList) {
+        this.table = table;
+        this.transactionList = transactionList;
     }
 
-    private void configureIdColumn(TableColumn<Transaction, Integer> idColumn) {
-        idColumn.setCellFactory(_ -> new TableCell<>() {
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) setText(null);
-                else setText(String.valueOf(getIndex()));
-            }
-        });
+    public void initialize() {
+        setupTableColumns();
+        addTableFilters();
+
+        table.setItems(null);
+        table.setItems(transactionList);
+        table.features().enableBounceEffect();
     }
 
-    private void configureCategoryColumn(TableColumn<Transaction, Category> categoryColumn) {
-        categoryColumn.setCellValueFactory(cellData -> {
-            Category category = cellData.getValue().category();
-            return new SimpleObjectProperty<Category>(category);
-        });
+    private void setupTableColumns() {
+        configureIdColumn();
+        configureDateColumn();
+        configureCategoryColumn();
+        configureAmountColumn();
+        configureDescriptionColumn();
     }
 
-    private void configureAmountColumn(TableColumn<Transaction, Float> amountColumn) {
-        amountColumn.setCellValueFactory(cellData -> {
-            float amount = cellData.getValue().amount();
-            return new SimpleFloatProperty(amount).asObject();
-        });
+    private void configureIdColumn() {
+        idColumn = new MFXTableColumn<>("ID", true, Comparator.comparingInt(transactionList::indexOf));
+        idColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(cell -> table.getItems().indexOf(cell) + 1));
+        table.getTableColumns().add(idColumn);
     }
 
-    private void configureDescriptionColumn(TableColumn<Transaction, String> descriptionColumn) {
-        descriptionColumn.setCellValueFactory(cellData -> {
-            String description = cellData.getValue().description();
-            return new SimpleStringProperty(description);
-        });
+    private void configureDateColumn() {
+        dateColumn = new MFXTableColumn<>("Date", true, Comparator.comparing(Transaction::date));
+        dateColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(Transaction::date));
+        table.getTableColumns().add(dateColumn);
     }
-    private void configureDateColumn(TableColumn<Transaction, String> dateColumn) {
-        dateColumn.setCellValueFactory(cellData -> {
-            String date = cellData.getValue().date();
-            return new SimpleStringProperty(date);
-        });
+
+    private void configureCategoryColumn() {
+        categoryColumn = new MFXTableColumn<>("Category", true, Comparator.comparing(Transaction::category));
+        categoryColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(Transaction::category));
+        table.getTableColumns().add(categoryColumn);
+    }
+
+    private void configureAmountColumn() {
+        amountColumn = new MFXTableColumn<>("Amount", true, Comparator.comparing(Transaction::amount));
+        amountColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(Transaction::amount));
+        table.getTableColumns().add(amountColumn);
+    }
+
+    private void configureDescriptionColumn() {
+        descriptionColumn = new MFXTableColumn<>("Description", true, Comparator.comparing(Transaction::description));
+        descriptionColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(Transaction::description));
+        table.getTableColumns().add(descriptionColumn);
+    }
+
+    private void addTableFilters() {
+        table.getFilters().add(new EnumFilter<>("Category", Transaction::category, Category.class));
+        table.getFilters().add(new FloatFilter<>("Amount", Transaction::amount));
     }
 }

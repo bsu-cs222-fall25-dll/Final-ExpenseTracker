@@ -2,11 +2,11 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.mfxcore.controls.Label?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -54,18 +54,6 @@
                      </children>
                   </VBox>
                </top>
-               <center>
-                  <TableView fx:id="transactionTable" style="-fx-background-color: #E8D5B7;" BorderPane.alignment="CENTER">
-                    <columns>
-                        <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-                      <TableColumn fx:id="categoryColumn" prefWidth="100.0" text="Category" />
-                      <TableColumn fx:id="amountColumn" prefWidth="120.0" text="Amount" />
-                        <TableColumn fx:id="descriptionColumn" prefWidth="239.0" text="Description" />
-                        <TableColumn fx:id="dateColumn" prefWidth="150.0" text="Date" />
-
-                    </columns>
-                  </TableView>
-               </center>
                <bottom>
                   <HBox prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
@@ -88,6 +76,13 @@
                      </children>
                   </HBox>
                </bottom>
+               <center>
+                  <MFXScrollPane BorderPane.alignment="CENTER">
+                     <content>
+                        <MFXTableView fx:id="transactionTable" minHeight="300.0" minWidth="682.0" />
+                     </content>
+                  </MFXScrollPane>
+               </center>
                 </BorderPane>
             </children>
         </AnchorPane>
