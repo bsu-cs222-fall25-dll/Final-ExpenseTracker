@@ -3,24 +3,26 @@ package edu.bsu.cs;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 public class ValidatorTest {
 
     @Test
     public void testCheckAddFields() {
         Validator validator = new Validator();
-        Assertions.assertTrue(validator.checkAddFields("300", Category.GAS));
+        Assertions.assertTrue(validator.checkAddFields("300", Category.GAS, LocalDate.now()));
     }
 
     @Test
     public void testCheckInvalidAmountAddFields() {
         Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkAddFields("test", Category.GAS));
+        Assertions.assertFalse(validator.checkAddFields("test", Category.GAS, LocalDate.now()));
     }
 
     @Test
     public void testCheckInvalidCategoryAddFields() {
         Validator validator = new Validator();
-        Assertions.assertFalse(validator.checkAddFields("300", null));
+        Assertions.assertFalse(validator.checkAddFields("300", null, LocalDate.now()));
     }
 
     @Test

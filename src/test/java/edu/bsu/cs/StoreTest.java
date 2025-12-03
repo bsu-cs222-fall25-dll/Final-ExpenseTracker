@@ -4,13 +4,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class StoreTest {
     Store store = new Store("./src/test/java/edu/bsu/cs/testStore.csv");
 
     @Test
     public void testAddTransaction() throws IOException {
-        Transaction transaction = new Transaction(10.87F, Category.FOOD, "Spent on ice cream");
+        Transaction transaction = new Transaction(10.87F, Category.FOOD, "Spent on ice cream", LocalDate.now());
         store.addTransaction(transaction);
     }
 

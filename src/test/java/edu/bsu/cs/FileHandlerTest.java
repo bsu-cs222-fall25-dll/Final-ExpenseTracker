@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class FileHandlerTest {
@@ -12,7 +13,7 @@ public class FileHandlerTest {
     @Test
     public void testSaveAllTransactions() throws IOException {
         ArrayList<Transaction> transactions = new ArrayList<>();
-        transactions.add(new Transaction(42.4F, Category.FOOD, "Spent on ice cream"));
+        transactions.add(new Transaction(42.4F, Category.FOOD, "Spent on ice cream", LocalDate.now()));
         fileHandler.saveAllTransactions(transactions);
 
         Assertions.assertEquals(fileHandler.loadAllTransactions(), transactions);
