@@ -16,7 +16,6 @@ public class TableConfig {
     private final MFXTableView<Transaction> table;
     private final ObservableList<Transaction> transactionList;
 
-    MFXTableColumn<Transaction> idColumn;
     MFXTableColumn<Transaction> dateColumn;
     MFXTableColumn<Transaction> categoryColumn;
     MFXTableColumn<Transaction> amountColumn;
@@ -39,7 +38,6 @@ public class TableConfig {
     }
 
     private void setupTableColumns() {
-        configureIdColumn();
         configureDateColumn();
         configureCategoryColumn();
         configureAmountColumn();
@@ -50,12 +48,6 @@ public class TableConfig {
         table.getSelectionModel().selectionProperty().addListener((observable, oldValue, newValue) -> {
             deleteButton.setDisable(newValue.isEmpty());
         });
-    }
-
-    private void configureIdColumn() {
-        idColumn = new MFXTableColumn<>("ID", true, Comparator.comparingInt(transactionList::indexOf));
-        idColumn.setRowCellFactory(_ -> new MFXTableRowCell<>(cell -> table.getItems().indexOf(cell) + 1));
-        table.getTableColumns().add(idColumn);
     }
 
     private void configureDateColumn() {
