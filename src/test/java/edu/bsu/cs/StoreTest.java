@@ -1,13 +1,15 @@
 package edu.bsu.cs;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class StoreTest {
-    Store store = new Store("./src/test/java/edu/bsu/cs/testStore.csv");
+    static Store store = new Store("./src/test/java/edu/bsu/cs/testStore.csv");
 
     @Test
     public void testAddTransaction() throws IOException {
@@ -24,6 +26,11 @@ public class StoreTest {
 
     @Test
     public void testRemoveTransaction() throws IOException {
+        store.removeTransaction(0);
+    }
+
+    @AfterAll
+    public static void cleanup() throws IOException {
         store.removeTransaction(0);
     }
 }
