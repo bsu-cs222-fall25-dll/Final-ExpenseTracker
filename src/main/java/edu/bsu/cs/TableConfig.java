@@ -6,6 +6,7 @@ import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import io.github.palexdev.materialfx.filter.EnumFilter;
 import io.github.palexdev.materialfx.filter.FloatFilter;
+import io.github.palexdev.materialfx.filter.StringFilter;
 import javafx.collections.ObservableList;
 
 import java.util.Comparator;
@@ -84,5 +85,6 @@ public class TableConfig {
     private void addTableFilters() {
         table.getFilters().add(new EnumFilter<>("Category", Transaction::category, Category.class));
         table.getFilters().add(new FloatFilter<>("Amount", Transaction::amount));
+        table.getFilters().add(new StringFilter<>("Description", Transaction::description));
     }
 }
