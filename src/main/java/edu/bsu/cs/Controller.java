@@ -56,6 +56,11 @@ public class Controller {
         } catch (IOException exception) { errorDialog.showWriteFailedError(); }
     }
 
+    @FXML public void openChartDialog(ActionEvent actionEvent) {
+        ChartDialog chartDialog = new ChartDialog();
+        chartDialog.showChart(transactionList);
+    }
+
     private void loadComboBox() {
         categoryComboBox.getItems().removeAll(categoryComboBox.getItems());
         categoryComboBox.getItems().addAll(Category.values());

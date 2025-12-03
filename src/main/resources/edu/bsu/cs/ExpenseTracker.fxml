@@ -49,6 +49,11 @@
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </MFXButton>
+                              <MFXButton buttonType="RAISED" layoutX="140.0" layoutY="17.0" onAction="#openChartDialog" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #77DD77;" text="Chart View" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </MFXButton>
                            </children>
                         </HBox>
                      </children>
