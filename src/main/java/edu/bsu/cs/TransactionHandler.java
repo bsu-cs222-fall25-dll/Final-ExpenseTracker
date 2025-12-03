@@ -12,7 +12,11 @@ public class TransactionHandler {
     private final String FILE_NAME = "transactions.csv";
     private final Store store = new Store(FILE_NAME);
     private final Validator validator = new Validator();
-    private final ObservableList<Transaction> transactionList = FXCollections.observableArrayList();
+    private final ObservableList<Transaction> transactionList;
+
+    TransactionHandler(ObservableList<Transaction> transactionList) {
+        this.transactionList = transactionList;
+    }
 
     public ObservableList<Transaction> initialize() {
         ArrayList<Transaction> transactions = store.getAllTransactions();
@@ -35,7 +39,7 @@ public class TransactionHandler {
 
     public boolean removeTransaction(String idTextField) throws IOException {
         if (!validator.checkId(idTextField)) return false;
-        int index = Integer.parseInt(idTextField);
+        int index = Integer.parseInt(idTextField) - 1;
         transactionList.remove(index);
         store.removeTransaction(index);
         return true;

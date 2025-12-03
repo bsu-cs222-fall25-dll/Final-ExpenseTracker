@@ -1,63 +1,42 @@
 package edu.bsu.cs;
 
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
+import io.github.palexdev.materialfx.controls.MFXTableColumn;
+import io.github.palexdev.materialfx.controls.MFXTableView;
+import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.filter.EnumFilter;
+import io.github.palexdev.materialfx.filter.FloatFilter;
+import javafx.collections.ObservableList;
+
+import java.util.Comparator;
 
 public class TableConfig {
 
-    public void initialize(
-            TableColumn<Transaction, Integer> idColumn,
-            TableColumn<Transaction, Category> categoryColumn,
-            TableColumn<Transaction, Float> amountColumn,
-            TableColumn<Transaction, String> descriptionColumn,
-            TableColumn<Transaction, String> dateColumn
+    public void initialize(MFXTableView<Transaction> table, ObservableList<Transaction> transactionList) {
+        setupTable(table, transactionList);
 
-    ) {
-        configureIdColumn(idColumn);
-        configureCategoryColumn(categoryColumn);
-        configureAmountColumn(amountColumn);
-        configureDescriptionColumn(descriptionColumn);
-        configureDateColumn(dateColumn);
+        table.autosizeColumnsOnInitialization();
     }
 
-    private void configureIdColumn(TableColumn<Transaction, Integer> idColumn) {
-        idColumn.setCellFactory(_ -> new TableCell<>() {
-            @Override
-            protected void updateItem(Integer item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) setText(null);
-                else setText(String.valueOf(getIndex()));
-            }
-        });
-    }
+    private void setupTable(MFXTableView<Transaction> table, ObservableList<Transaction> transactionList) {
+        MFXTableColumn<Transaction> idColumn = new MFXTableColumn<>("Id", true);
+        MFXTableColumn<Transaction> categoryColumn = new MFXTableColumn<>("Category", true, Comparator.comparing(Transaction::category));
+        MFXTableColumn<Transaction> amountColumn = new MFXTableColumn<>("Amount", true, Comparator.comparing(Transaction::amount));
+        MFXTableColumn<Transaction> descriptionColumn = new MFXTableColumn<>("Description", true, Comparator.comparing(Transaction::description));
+        MFXTableColumn<Transaction> dateColumn = new MFXTableColumn<>("Date", true, Comparator.comparing(Transaction::date));
 
-    private void configureCategoryColumn(TableColumn<Transaction, Category> categoryColumn) {
-        categoryColumn.setCellValueFactory(cellData -> {
-            Category category = cellData.getValue().category();
-            return new SimpleObjectProperty<Category>(category);
-        });
-    }
+        idColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(cell -> table.getItems().indexOf(cell) + 1));
+        categoryColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::category));
+        amountColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::amount));
+        descriptionColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::description));
+        dateColumn.setRowCellFactory(transaction -> new MFXTableRowCell<>(Transaction::date));
 
-    private void configureAmountColumn(TableColumn<Transaction, Float> amountColumn) {
-        amountColumn.setCellValueFactory(cellData -> {
-            float amount = cellData.getValue().amount();
-            return new SimpleFloatProperty(amount).asObject();
-        });
-    }
+        table.getTableColumns().addAll(idColumn, categoryColumn, amountColumn, descriptionColumn, dateColumn);
+        table.getFilters().addAll(
+                new EnumFilter<>("Category", Transaction::category, Category.class),
+                new FloatFilter<>("Amount", Transaction::amount)
+        );
 
-    private void configureDescriptionColumn(TableColumn<Transaction, String> descriptionColumn) {
-        descriptionColumn.setCellValueFactory(cellData -> {
-            String description = cellData.getValue().description();
-            return new SimpleStringProperty(description);
-        });
-    }
-    private void configureDateColumn(TableColumn<Transaction, String> dateColumn) {
-        dateColumn.setCellValueFactory(cellData -> {
-            String date = cellData.getValue().date();
-            return new SimpleStringProperty(date);
-        });
+        table.setItems(null);
+        table.setItems(transactionList);
     }
 }
