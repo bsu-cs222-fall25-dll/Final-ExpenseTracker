@@ -26,6 +26,12 @@ public class ValidatorTest {
     }
 
     @Test
+    public void testCheckInvalidDateAddFields() {
+        Validator validator = new Validator();
+        Assertions.assertFalse(validator.checkAddFields("300", Category.GAS, null));
+    }
+
+    @Test
     public void testCheckAmount() {
         Validator validator = new Validator();
         Assertions.assertTrue(validator.checkAmount("65.56"));
@@ -41,6 +47,18 @@ public class ValidatorTest {
     public void testCheckNegativeAmount() {
         Validator validator = new Validator();
         Assertions.assertFalse(validator.checkAmount("-200"));
+    }
+
+    @Test
+    public void testCheckDate() {
+        Validator validator = new Validator();
+        Assertions.assertTrue(validator.checkDate(LocalDate.now()));
+    }
+
+    @Test
+    public void testCheckNotDate() {
+        Validator validator = new Validator();
+        Assertions.assertFalse(validator.checkDate(null));
     }
 
     @Test

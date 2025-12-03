@@ -18,9 +18,7 @@ public class Validator {
         }
     }
 
-    public boolean checkDate(LocalDate dateField) {
-        return dateField != null;
-    }
+    public boolean checkDate(LocalDate dateField) { return dateField != null; }
 
     public boolean checkCategory(Category categoryComboBox) { return categoryComboBox != null; }
 }
