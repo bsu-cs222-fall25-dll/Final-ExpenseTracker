@@ -2,6 +2,7 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
@@ -33,7 +34,7 @@
                                  </textFill>
                               </MFXTextField>
                               <MFXTextField fx:id="descriptionTextField" floatMode="BORDER" prefHeight="38.0" prefWidth="107.0" promptText="Description" style="-fx-background-color: tan;" />
-                              <MFXTextField fx:id="dateTextField" floatMode="BORDER" prefHeight="38.0" prefWidth="107.0" promptText="Date ex.1/02/24" style="-fx-background-color: tan;" />
+                              <MFXDatePicker fx:id="dateField" floatMode="BORDER" promptText="Date" style="-fx-background-color: tan;" />
                               <MFXButton buttonType="RAISED" onAction="#addTransaction" prefHeight="35.0" prefWidth="102.0" style="-fx-background-color: #0f2043;" text="Add" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />

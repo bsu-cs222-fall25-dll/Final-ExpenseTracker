@@ -1,10 +1,13 @@
 package edu.bsu.cs;
 
+import java.time.LocalDate;
+
 public class Validator {
 
-    public boolean checkAddFields(String amountTextField, Category categoryComboBox) {
+    public boolean checkAddFields(String amountTextField, Category categoryComboBox, LocalDate dateField) {
         if (!checkAmount(amountTextField)) return false;
-        return checkCategory(categoryComboBox);
+        else if (!checkCategory(categoryComboBox)) return false;
+        else return checkDate(dateField);
     }
 
     public boolean checkAmount(String amountTextField) {
@@ -15,13 +18,8 @@ public class Validator {
         }
     }
 
-    public boolean checkId(String idTextField) {
-        try {
-            Integer.parseInt(idTextField);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+    public boolean checkDate(LocalDate dateField) {
+        return dateField != null;
     }
 
     public boolean checkCategory(Category categoryComboBox) { return categoryComboBox != null; }

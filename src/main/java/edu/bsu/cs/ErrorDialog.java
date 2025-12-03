@@ -22,11 +22,12 @@ public class ErrorDialog {
     public void showInvalidTypeError() {
         showError("""
                 You entered an invalid type!
-                The correct types are:
+                The correct types are (These types are required):
                  \
                 - Category = GAS, INCOME, GROCERY, UTILITY, ENTERTAINMENT, FOOD, HEALTH, SHOPPING
                  \
-                - Amount = Float > 0""");
+                - Amount = Float > 0
+                 - Date = Date""");
     }
 
     public void showWriteFailedError() {

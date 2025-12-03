@@ -3,6 +3,7 @@ package edu.bsu.cs;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,7 +27,7 @@ public class FileHandler {
                         Float.parseFloat(fields[0]),
                         Category.valueOf(fields[1]),
                         fields[2],
-                        fields[3]);
+                        LocalDate.parse(fields[3]));
                 transactions.add(transaction);
             }
 

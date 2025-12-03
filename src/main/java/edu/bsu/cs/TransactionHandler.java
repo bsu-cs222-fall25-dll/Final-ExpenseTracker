@@ -3,6 +3,7 @@ package edu.bsu.cs;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 // This is not testable because it is integrated with JavaFX ObservableList
@@ -21,14 +22,12 @@ public class TransactionHandler {
         return transactionList;
     }
 
-    public boolean addTransaction(Category categoryComboBox, String amountTextField, String descriptionTextField, String dateTextField) throws IOException {
-        if (!validator.checkAddFields(amountTextField, categoryComboBox)) return false;
+    public boolean addTransaction(Category categoryComboBox, String amountTextField, String descriptionTextField, LocalDate dateField) throws IOException {
+        if (!validator.checkAddFields(amountTextField, categoryComboBox, dateField)) return false;
         String description = descriptionTextField;
-        String date = dateTextField;
         if (descriptionTextField.isEmpty()) description = " ";
-        if (dateTextField.isEmpty()) date = " ";
 
-        Transaction transaction = new Transaction(Float.parseFloat(amountTextField), categoryComboBox, description, date);
+        Transaction transaction = new Transaction(Float.parseFloat(amountTextField), categoryComboBox, description, dateField);
         store.addTransaction(transaction);
         transactionList.add(transaction);
         return true;

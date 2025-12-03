@@ -1,9 +1,6 @@
 package edu.bsu.cs;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXTableView;
-import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.mfxcore.controls.Label;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +19,7 @@ public class Controller {
     @FXML private MFXComboBox<Category> categoryComboBox;
     @FXML private MFXTextField amountTextField;
     @FXML private MFXTextField descriptionTextField;
-    @FXML private MFXTextField dateTextField;
+    @FXML private MFXDatePicker dateField;
     @FXML private MFXButton deleteButton;
     @FXML private MFXTableView<Transaction> transactionTable;
     @FXML private Label totalExpense;
@@ -36,7 +33,7 @@ public class Controller {
     @SuppressWarnings("unused")
     @FXML private void addTransaction(ActionEvent actionEvent) {
         try {
-            boolean transactionStatus = transactionHandler.addTransaction(categoryComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText(), dateTextField.getText());
+            boolean transactionStatus = transactionHandler.addTransaction(categoryComboBox.getValue(), amountTextField.getText(), descriptionTextField.getText(), dateField.getValue());
             if (!transactionStatus) errorDialog.showInvalidTypeError();
             else {
                 setTotalExpense();
@@ -58,6 +55,7 @@ public class Controller {
         } catch (IOException exception) { errorDialog.showWriteFailedError(); }
     }
 
+    @SuppressWarnings("unused")
     @FXML public void openChartDialog(ActionEvent actionEvent) {
         ChartDialog chartDialog = new ChartDialog();
         chartDialog.showChart(transactionList);
@@ -80,6 +78,6 @@ public class Controller {
         amountTextField.clear();
         descriptionTextField.clear();
         categoryComboBox.clear();
-        dateTextField.clear();
+        dateField.clear();
     }
 }
