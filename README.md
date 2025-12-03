@@ -24,4 +24,4 @@ You can only run this application through Gradle. If you have IntelliJ you can r
 Alternatively, you can use either the `gradlew` or `gradlew.bat` files at the root of the project depending on your machine.
 
 ### Suppressed warnings
-There are 2 suppressed warning currently in `src/main/java/edu/bsu/cs/Controller` in the `addTransaction()` and `removeTransaction()` methods due to their arguments being unused. These arguments cant be removed due to JavaFX needing them.
+There are 3 suppressed warning currently in `src/main/java/edu/bsu/cs/Controller` in the `addTransaction()`, `removeTransaction()` and `openChartDialog()` methods due to their arguments being unused. These arguments cant be removed due to JavaFX needing them.
