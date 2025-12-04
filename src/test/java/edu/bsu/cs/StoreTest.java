@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class StoreTest {
     static Store store = new Store("./src/test/java/edu/bsu/cs/testStore.csv");

@@ -11,11 +11,8 @@ public class Validator {
     }
 
     public boolean checkAmount(String amountTextField) {
-        try {
-            return Float.parseFloat(amountTextField) > 0;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        try { return Float.parseFloat(amountTextField) > 0; }
+        catch (NumberFormatException e) { return false; }
     }
 
     public boolean checkDate(LocalDate dateField) { return dateField != null; }
