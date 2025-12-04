@@ -45,9 +45,9 @@ public class TableConfig {
     }
 
     private void addDeleteBindListener(MFXButton deleteButton) {
-        table.getSelectionModel().selectionProperty().addListener((observable, oldValue, newValue) -> {
-            deleteButton.setDisable(newValue.isEmpty());
-        });
+        table.getSelectionModel().selectionProperty().addListener((_, _, newValue) ->
+            deleteButton.setDisable(newValue.isEmpty())
+        );
     }
 
     private void configureDateColumn() {

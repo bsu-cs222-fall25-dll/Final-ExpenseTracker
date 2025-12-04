@@ -7,11 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileHandler {
-
-    private final String fileName;
-
-    public FileHandler(String fileName) { this.fileName = fileName; }
+public record FileHandler(String fileName) {
 
     public ArrayList<Transaction> loadAllTransactions() {
         ArrayList<Transaction> transactions = new ArrayList<>();
@@ -32,19 +28,21 @@ public class FileHandler {
             }
 
             return transactions;
-        } catch (IOException e) { return transactions; }
+        } catch (IOException e) {
+            return transactions;
+        }
     }
 
     public void saveAllTransactions(ArrayList<Transaction> transactions) throws IOException {
-            FileWriter file = new FileWriter(fileName);
-            String header = "amount,category,description,date\n";
-            file.write(header);
+        FileWriter file = new FileWriter(fileName);
+        String header = "amount,category,description,date\n";
+        file.write(header);
 
-            for (Transaction transaction : transactions) {
-                String line = transaction.amount() + "," + transaction.category() + "," + transaction.description() + "," + transaction.date();
-                file.write(line + "\n");
-            }
+        for (Transaction transaction : transactions) {
+            String line = transaction.amount() + "," + transaction.category() + "," + transaction.description() + "," + transaction.date();
+            file.write(line + "\n");
+        }
 
-            file.close();
+        file.close();
     }
 }
